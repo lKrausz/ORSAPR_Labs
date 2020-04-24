@@ -31,12 +31,12 @@
             this.buildButton = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.bottomRadius_textBox = new System.Windows.Forms.TextBox();
+            this.topRadius_textBox = new System.Windows.Forms.TextBox();
+            this.height_textBox = new System.Windows.Forms.TextBox();
+            this.topThickness_textBox = new System.Windows.Forms.TextBox();
+            this.topWidth_textBox = new System.Windows.Forms.TextBox();
+            this.wallThickness_textBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,18 +44,18 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.bottomThickness_textBox = new System.Windows.Forms.TextBox();
+            this.baseParams = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.additionalParams = new System.Windows.Forms.GroupBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.baseParams.SuspendLayout();
+            this.additionalParams.SuspendLayout();
             this.SuspendLayout();
             // 
             // buildButton
@@ -81,6 +81,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(102, 21);
             this.comboBox1.TabIndex = 1;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -91,47 +92,47 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Материал:";
             // 
-            // textBox1
+            // bottomRadius_textBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(143, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(102, 20);
-            this.textBox1.TabIndex = 3;
+            this.bottomRadius_textBox.Location = new System.Drawing.Point(143, 19);
+            this.bottomRadius_textBox.Name = "bottomRadius_textBox";
+            this.bottomRadius_textBox.Size = new System.Drawing.Size(102, 20);
+            this.bottomRadius_textBox.TabIndex = 3;
             // 
-            // textBox2
+            // topRadius_textBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(143, 45);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(102, 20);
-            this.textBox2.TabIndex = 4;
+            this.topRadius_textBox.Location = new System.Drawing.Point(143, 45);
+            this.topRadius_textBox.Name = "topRadius_textBox";
+            this.topRadius_textBox.Size = new System.Drawing.Size(102, 20);
+            this.topRadius_textBox.TabIndex = 4;
             // 
-            // textBox3
+            // height_textBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(143, 71);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(102, 20);
-            this.textBox3.TabIndex = 5;
+            this.height_textBox.Location = new System.Drawing.Point(143, 71);
+            this.height_textBox.Name = "height_textBox";
+            this.height_textBox.Size = new System.Drawing.Size(102, 20);
+            this.height_textBox.TabIndex = 5;
             // 
-            // textBox4
+            // topThickness_textBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(143, 18);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(102, 20);
-            this.textBox4.TabIndex = 6;
+            this.topThickness_textBox.Location = new System.Drawing.Point(143, 18);
+            this.topThickness_textBox.Name = "topThickness_textBox";
+            this.topThickness_textBox.Size = new System.Drawing.Size(102, 20);
+            this.topThickness_textBox.TabIndex = 6;
             // 
-            // textBox5
+            // topWidth_textBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(143, 44);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(102, 20);
-            this.textBox5.TabIndex = 7;
+            this.topWidth_textBox.Location = new System.Drawing.Point(143, 44);
+            this.topWidth_textBox.Name = "topWidth_textBox";
+            this.topWidth_textBox.Size = new System.Drawing.Size(102, 20);
+            this.topWidth_textBox.TabIndex = 7;
             // 
-            // textBox6
+            // wallThickness_textBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(143, 70);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(102, 20);
-            this.textBox6.TabIndex = 8;
+            this.wallThickness_textBox.Location = new System.Drawing.Point(143, 70);
+            this.wallThickness_textBox.Name = "wallThickness_textBox";
+            this.wallThickness_textBox.Size = new System.Drawing.Size(102, 20);
+            this.wallThickness_textBox.TabIndex = 8;
             // 
             // label2
             // 
@@ -196,30 +197,30 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "Высота стакана:";
             // 
-            // textBox7
+            // bottomThickness_textBox
             // 
-            this.textBox7.Location = new System.Drawing.Point(143, 96);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(102, 20);
-            this.textBox7.TabIndex = 15;
+            this.bottomThickness_textBox.Location = new System.Drawing.Point(143, 96);
+            this.bottomThickness_textBox.Name = "bottomThickness_textBox";
+            this.bottomThickness_textBox.Size = new System.Drawing.Size(102, 20);
+            this.bottomThickness_textBox.TabIndex = 15;
             // 
-            // groupBox1
+            // baseParams
             // 
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(13, 44);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(283, 102);
-            this.groupBox1.TabIndex = 17;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Общие параметры";
+            this.baseParams.Controls.Add(this.label11);
+            this.baseParams.Controls.Add(this.label10);
+            this.baseParams.Controls.Add(this.label9);
+            this.baseParams.Controls.Add(this.label8);
+            this.baseParams.Controls.Add(this.bottomRadius_textBox);
+            this.baseParams.Controls.Add(this.topRadius_textBox);
+            this.baseParams.Controls.Add(this.height_textBox);
+            this.baseParams.Controls.Add(this.label2);
+            this.baseParams.Controls.Add(this.label3);
+            this.baseParams.Location = new System.Drawing.Point(13, 44);
+            this.baseParams.Name = "baseParams";
+            this.baseParams.Size = new System.Drawing.Size(283, 102);
+            this.baseParams.TabIndex = 17;
+            this.baseParams.TabStop = false;
+            this.baseParams.Text = "Общие параметры";
             // 
             // label11
             // 
@@ -248,26 +249,26 @@
             this.label9.TabIndex = 17;
             this.label9.Text = "мм";
             // 
-            // groupBox2
+            // additionalParams
             // 
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.textBox7);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.textBox6);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.textBox5);
-            this.groupBox2.Location = new System.Drawing.Point(13, 152);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(283, 125);
-            this.groupBox2.TabIndex = 18;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Дополнительные параметры";
+            this.additionalParams.Controls.Add(this.label15);
+            this.additionalParams.Controls.Add(this.label14);
+            this.additionalParams.Controls.Add(this.label13);
+            this.additionalParams.Controls.Add(this.label12);
+            this.additionalParams.Controls.Add(this.label7);
+            this.additionalParams.Controls.Add(this.bottomThickness_textBox);
+            this.additionalParams.Controls.Add(this.label6);
+            this.additionalParams.Controls.Add(this.label5);
+            this.additionalParams.Controls.Add(this.wallThickness_textBox);
+            this.additionalParams.Controls.Add(this.label4);
+            this.additionalParams.Controls.Add(this.topThickness_textBox);
+            this.additionalParams.Controls.Add(this.topWidth_textBox);
+            this.additionalParams.Location = new System.Drawing.Point(13, 152);
+            this.additionalParams.Name = "additionalParams";
+            this.additionalParams.Size = new System.Drawing.Size(283, 125);
+            this.additionalParams.TabIndex = 18;
+            this.additionalParams.TabStop = false;
+            this.additionalParams.Text = "Дополнительные параметры";
             // 
             // label15
             // 
@@ -313,14 +314,16 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.buildButton);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.baseParams);
+            this.Controls.Add(this.additionalParams);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GlassBuilder";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.baseParams.ResumeLayout(false);
+            this.baseParams.PerformLayout();
+            this.additionalParams.ResumeLayout(false);
+            this.additionalParams.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -331,12 +334,12 @@
         private System.Windows.Forms.Button buildButton;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox bottomRadius_textBox;
+        private System.Windows.Forms.TextBox topRadius_textBox;
+        private System.Windows.Forms.TextBox height_textBox;
+        private System.Windows.Forms.TextBox topThickness_textBox;
+        private System.Windows.Forms.TextBox topWidth_textBox;
+        private System.Windows.Forms.TextBox wallThickness_textBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -344,9 +347,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox bottomThickness_textBox;
+        private System.Windows.Forms.GroupBox baseParams;
+        private System.Windows.Forms.GroupBox additionalParams;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;

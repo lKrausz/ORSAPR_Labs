@@ -45,17 +45,37 @@ namespace Model
         private double _wallThickness;
         #endregion
 
+        #region Const
+
+        double papperThicknes = 0.003;
+        double papperTopThickness = 0.005;
+        double papperTopWidth = 0.005;
+
+        #endregion
+
         public GlassParams(double bottomRadius, double bottomThickness, double height, double topRadius, double topThickness, double topWidth, double wallThickness)
         {
             //validation
 
-            _bottomRadius = bottomRadius;
-            _bottomThickness = bottomThickness;
-            _height = height;
-            _topRadius = topRadius;
-            _topThickness = topThickness;
-            _topWidth = topWidth;
-            _wallThickness = wallThickness;
+            _bottomRadius = bottomRadius/1000;
+            _bottomThickness = bottomThickness/1000;
+            _height = height/1000;
+            _topRadius = topRadius/1000;
+            _topThickness = topThickness/1000;
+            _topWidth = topWidth/1000;
+            _wallThickness = wallThickness/1000;
+        }
+        public GlassParams(double bottomRadius, double height, double topRadius)
+        {
+            //validation
+
+            _bottomRadius = bottomRadius/1000;
+            _bottomThickness = papperThicknes;
+            _height = height/1000;
+            _topRadius = topRadius/1000;
+            _topThickness = papperTopThickness;
+            _topWidth = papperTopWidth;
+            _wallThickness = papperThicknes;
         }
 
         #region Get properties

@@ -84,6 +84,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{f8fe1207-157f-4f44-8806-2a27281c4ff8}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SwConnector\SwConnector.csproj">
       <Project>{2389c017-ce24-4dd8-8a06-954cd10a223e}</Project>
       <Name>SwConnector</Name>

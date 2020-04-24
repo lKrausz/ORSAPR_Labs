@@ -13,42 +13,31 @@ namespace SwConnector
     public class SlwConnector
     {
 
-        public SldWorks swApp { get; private set; }
-        public IModelDoc2 swModel { get; private set; }
-        /// <summary>
-        /// Завершение открытого процесса Solidworks
-        /// </summary>
-        public void KillProcess()
-        {
-            Process[] processes = Process.GetProcessesByName("SLDWORKS");
-            foreach (Process process in processes)
-            {
-                process.CloseMainWindow();
-                process.Kill();
-            }
-        }
+        private SldWorks _swApp;
+
+        private IModelDoc2 _swModel;
+
         
         /// <summary>
         /// Открытие Solidworks
         /// </summary>
-        public void StartProcess()
+        public SldWorks StartProcess()
         {     
             Guid muGuid = new Guid("655fc8fc-6216-46e2-82b6-221a9a271624");
             object processSw = System.Activator.CreateInstance(System.Type.GetTypeFromCLSID(muGuid));
-            swApp = (SldWorks)processSw;
-            swApp.Visible = true;
+            _swApp = (SldWorks)processSw;
+            _swApp.Visible = true;
+            return _swApp;
         }
 
+        /// <summary>
+        /// Создание нового документа (детали)
+        /// </summary>
         public IModelDoc2 CreateDocument()
         {
-            swApp.NewPart();
-            swModel = swApp.ActiveDoc;
-            return swModel;
-        }
-
-        public void CreatePoint(double height)
-        {
-
+            _swApp.NewPart();
+            _swModel = _swApp.ActiveDoc;
+            return _swModel;
         }
    
     }
