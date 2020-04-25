@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlassBuilder.cs" />
-    <Compile Include="ValidationTool.cs" />
     <Compile Include="GlassParams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

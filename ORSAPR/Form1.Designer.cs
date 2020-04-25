@@ -98,6 +98,7 @@
             this.bottomRadius_textBox.Name = "bottomRadius_textBox";
             this.bottomRadius_textBox.Size = new System.Drawing.Size(102, 20);
             this.bottomRadius_textBox.TabIndex = 3;
+            this.bottomRadius_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
             // 
             // topRadius_textBox
             // 
@@ -105,6 +106,7 @@
             this.topRadius_textBox.Name = "topRadius_textBox";
             this.topRadius_textBox.Size = new System.Drawing.Size(102, 20);
             this.topRadius_textBox.TabIndex = 4;
+            this.topRadius_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
             // 
             // height_textBox
             // 
@@ -112,6 +114,7 @@
             this.height_textBox.Name = "height_textBox";
             this.height_textBox.Size = new System.Drawing.Size(102, 20);
             this.height_textBox.TabIndex = 5;
+            this.height_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
             // 
             // topThickness_textBox
             // 
@@ -119,6 +122,7 @@
             this.topThickness_textBox.Name = "topThickness_textBox";
             this.topThickness_textBox.Size = new System.Drawing.Size(102, 20);
             this.topThickness_textBox.TabIndex = 6;
+            this.topThickness_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
             // 
             // topWidth_textBox
             // 
@@ -126,6 +130,7 @@
             this.topWidth_textBox.Name = "topWidth_textBox";
             this.topWidth_textBox.Size = new System.Drawing.Size(102, 20);
             this.topWidth_textBox.TabIndex = 7;
+            this.topWidth_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
             // 
             // wallThickness_textBox
             // 
@@ -133,6 +138,7 @@
             this.wallThickness_textBox.Name = "wallThickness_textBox";
             this.wallThickness_textBox.Size = new System.Drawing.Size(102, 20);
             this.wallThickness_textBox.TabIndex = 8;
+            this.wallThickness_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
             // 
             // label2
             // 
@@ -203,6 +209,7 @@
             this.bottomThickness_textBox.Name = "bottomThickness_textBox";
             this.bottomThickness_textBox.Size = new System.Drawing.Size(102, 20);
             this.bottomThickness_textBox.TabIndex = 15;
+            this.bottomThickness_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
             // 
             // baseParams
             // 
