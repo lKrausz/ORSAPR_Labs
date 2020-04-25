@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SwConnector;
 using SolidWorks.Interop.sldworks;
@@ -22,7 +15,6 @@ namespace GUI
             comboBox1.SelectedItem = "Стекло";
         }
 
-        SldWorks swApp;
         IModelDoc2 swModel;
 
         SlwConnector connector = new SlwConnector();
@@ -30,7 +22,7 @@ namespace GUI
 
         private void buildButton_Click(object sender, EventArgs e)
         {
-            swApp = connector.StartProcess();
+            connector.StartProcess();
             swModel = connector.CreateDocument();
 
             if (((string)comboBox1.Text) == "Стекло")
@@ -53,13 +45,18 @@ namespace GUI
                 builder.BuildGlass(swModel, glass);
             }
 
-
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (((string)comboBox1.Text) == "Стекло") additionalParams.Visible = true;
             else additionalParams.Visible = false;
+        }
+
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+
+
         }
     }
 }

@@ -46,17 +46,35 @@ namespace Model
         #endregion
 
         #region Const
-
-        double papperThicknes = 0.003;
+        /// <summary>
+        /// Значение толщины бумаги
+        /// </summary>
+        double papperThicknes = 0.004;
+        /// <summary>
+        /// Значение толщины горлышка для бумажного стакана
+        /// </summary>
         double papperTopThickness = 0.005;
-        double papperTopWidth = 0.005;
+        /// <summary>
+        /// Значение ширины горлышка для бумажного стакана
+        /// </summary>
+        double papperTopWidth = 0.003;
 
         #endregion
-
+        /// <summary>
+        /// Конструктор для стакана из стекла
+        /// </summary>
+        /// <param name="bottomRadius"></param>
+        /// <param name="bottomThickness"></param>
+        /// <param name="height"></param>
+        /// <param name="topRadius"></param>
+        /// <param name="topThickness"></param>
+        /// <param name="topWidth"></param>
+        /// <param name="wallThickness"></param>
         public GlassParams(double bottomRadius, double bottomThickness, double height, double topRadius, double topThickness, double topWidth, double wallThickness)
         {
             //validation
 
+            // Перевод введенных параметров в метры
             _bottomRadius = bottomRadius/1000;
             _bottomThickness = bottomThickness/1000;
             _height = height/1000;
@@ -65,10 +83,18 @@ namespace Model
             _topWidth = topWidth/1000;
             _wallThickness = wallThickness/1000;
         }
+        /// <summary>
+        /// Конструктор для стакана из бумаги
+        /// </summary>
+        /// <param name="bottomRadius"></param>
+        /// <param name="height"></param>
+        /// <param name="topRadius"></param>
         public GlassParams(double bottomRadius, double height, double topRadius)
         {
             //validation
 
+            // Перевод введенных параметров в метры,
+            // присвоение значений, заданных константами
             _bottomRadius = bottomRadius/1000;
             _bottomThickness = papperThicknes;
             _height = height/1000;
