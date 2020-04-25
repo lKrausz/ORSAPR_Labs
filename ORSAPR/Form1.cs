@@ -42,7 +42,7 @@ namespace GUI
                 double.Parse(topThickness_textBox.Text),
                 double.Parse(topWidth_textBox.Text),
                 double.Parse(wallThickness_textBox.Text));
-                builder.BuildGlass(swApp, swModel, glass);
+                builder.BuildGlass(swModel, glass);
             }
 
             else 
@@ -50,7 +50,7 @@ namespace GUI
                 GlassParams glass = new GlassParams(double.Parse(bottomRadius_textBox.Text),
                 double.Parse(height_textBox.Text),
                 double.Parse(topRadius_textBox.Text));
-                builder.BuildGlass(swApp, swModel, glass);
+                builder.BuildGlass(swModel, glass);
             }
 
 
