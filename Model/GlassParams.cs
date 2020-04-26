@@ -62,21 +62,21 @@ namespace Model
         int minBottomRadius = 15;
         int maxBottomRadius = 80;
 
-        int minBottomThickness = 3;
-        int maxbottomThickness = 24;
-
-        int minHeight = 45;
-        int maxHeight = 500;
-
         int minTopRadius = 15;
         int maxTopRadius = 120;
 
-        int maxTopThickness = 75;
+        int minHeight = 45;
+        int maxHeight = 480;
+
+        int maxTopThickness = 72;
 
         int maxTopWidth = 20;
 
         int minWallThickness = 3;
-        int maxWallThickness = 24;
+        int maxWallThickness = 16;
+
+        int minBottomThickness = 3;
+        int maxbottomThickness = 24;
 
         #endregion
         /// <summary>
@@ -260,6 +260,11 @@ namespace Model
             {
                 errorMessage.Add("Область допустимых значений высоты стакана: " +
                     "от " + minHeight + "до" + maxHeight + ".\n");
+            }
+            else if (height > (4 * topRadius))
+            {
+                errorMessage.Add("Нарушены пропорции стакана. Область допустимых значений высоты стакана: " +
+                    "от " + minHeight + "до" + (4 * topRadius) + ".\n"); ;
             }
             if (errorMessage.Count > 0)
             {

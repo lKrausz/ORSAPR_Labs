@@ -324,6 +324,9 @@
             this.Controls.Add(this.baseParams);
             this.Controls.Add(this.additionalParams);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(324, 375);
+            this.MinimumSize = new System.Drawing.Size(324, 375);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GlassBuilder";

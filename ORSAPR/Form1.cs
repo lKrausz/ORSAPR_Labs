@@ -15,7 +15,6 @@ namespace GUI
         {
             InitializeComponent();
             comboBox1.SelectedItem = "Стекло";
-           
         }
         SldWorks swApp;
         IModelDoc2 swModel;

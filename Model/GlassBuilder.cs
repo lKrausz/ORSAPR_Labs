@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SwConnector;
 using SolidWorks.Interop.sldworks;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Model
 {
@@ -28,7 +30,7 @@ namespace Model
             //Выдавливание элемента по двум сечениям (основа стакана)
             swModel.Extension.SelectByID2("Эскиз2", "SKETCH", 0, 0, 0, false, 1, null, 0);
             swModel.Extension.SelectByID2("Эскиз3", "SKETCH", 0, 0, 0, true, 1, null, 0);
-            swModel.FeatureManager.InsertProtrusionBlend(false, true, false, 1, 0, 0, 1, 1, true, true, false, 0, 0, 0, true, true, true);
+            swModel.FeatureManager.InsertProtrusionBlend(false, true, false, 1, 0, 0, 1, 1, true, true, false, 0, 0, 0, true, true, true);            
             swModel.ClearSelection2(true);
 
             CreateCircle(swModel, "Plane2@Трехмерный эскиз1", "EXTSKETCHSURFACES", glass.GetTopRadius() - glass.GetWallThickness());
