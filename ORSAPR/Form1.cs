@@ -4,6 +4,7 @@ using SwConnector;
 using SolidWorks.Interop.sldworks;
 using Model;
 using System.Text.RegularExpressions;
+using System.Drawing;
 
 
 
@@ -21,33 +22,52 @@ namespace GUI
         SlwConnector connector = new SlwConnector();
         GlassBuilder builder = new GlassBuilder();
 
+        //Значение max и min значений параметров стакана
+
+        int minBottomRadius = 15;
+        int maxBottomRadius = 80;
+
+        int minTopRadius = 15;
+        int maxTopRadius = 120;
+
+        int minHeight = 45;
+        int maxHeight = 480;
+
+        int maxTopThickness = 72;
+
+        int maxTopWidth = 20;
+
+        int minWallThickness = 3;
+        int maxWallThickness = 16;
+
+        int minBottomThickness = 3;
+        int maxbottomThickness = 24;
+
         private void buildButton_Click(object sender, EventArgs e)
         {
-            swApp = connector.StartProcess();
-            swModel = connector.CreateDocument();
-
             try
             {
+                GlassParams glass;
                 if (((string)comboBox1.Text) == "Стекло")
                 {
-                    GlassParams glass = new GlassParams(double.Parse(bottomRadius_textBox.Text),
+                    glass = new GlassParams(double.Parse(bottomRadius_textBox.Text),
                     double.Parse(bottomThickness_textBox.Text),
                     double.Parse(height_textBox.Text),
                     double.Parse(topRadius_textBox.Text),
                     double.Parse(topThickness_textBox.Text),
                     double.Parse(topWidth_textBox.Text),
                     double.Parse(wallThickness_textBox.Text));
-                    builder.BuildGlass(swModel, glass);
                 }
 
                 else
                 {
-                    GlassParams glass = new GlassParams(double.Parse(bottomRadius_textBox.Text),
+                    glass = new GlassParams(double.Parse(bottomRadius_textBox.Text),
                     double.Parse(height_textBox.Text),
                     double.Parse(topRadius_textBox.Text));
-                    builder.BuildGlass(swModel, glass);
                 }
-
+                swApp = connector.StartProcess();
+                swModel = connector.CreateDocument();
+                builder.BuildGlass(swModel, glass);
             }
             catch(ArgumentException ex)
             {
@@ -61,15 +81,6 @@ namespace GUI
                 return;
             }
         }
-
-        /// <summary>
-        /// Валидатор на ввод double.
-        /// </summary>
-        private void ValidateDoubleTextBoxs_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !Regex.IsMatch(e.KeyChar.ToString(), @"[\d\b,]");
-        }
-
         /// <summary>
         /// Скрытие/Демонстрация дополнительных параметров стакана при смене материала
         /// </summary>
@@ -83,6 +94,113 @@ namespace GUI
             {
                 additionalParams.Visible = false;
             }
+        }
+
+        /// <summary>
+        /// Валидатор на ввод double.
+        /// </summary>
+        private void ValidateDoubleTextBoxs_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.KeyChar.ToString(), @"[\d\b,]");
+        }
+
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+            string name = this.ActiveControl.Name;
+            double value;
+            if (this.ActiveControl.Text != "")
+            {
+                value = Double.Parse(this.ActiveControl.Text);
+                Validation(name, value);
+            }
+
+            else ShowError("Требуется заполнение поля");
+        }
+
+        private void Validation(string name, double value)
+        {
+            this.ActiveControl.BackColor = Color.White;
+            string hint;
+            switch (name)
+            {
+                case ("bottomRadius_textBox"):
+                    if (value < minBottomRadius || value > maxBottomRadius)
+                    {
+                        hint = "Область допустимых значений дна стакана: от " + minBottomRadius + "до" + maxBottomRadius + ".\n";
+                        ShowError(hint);
+                    }
+                    return;
+                case "bottomThickness_textBox":
+                    if (value < minBottomThickness || (value > maxbottomThickness))
+                    {
+                        hint = "Область допустимых значений толщины дна стакана: от " + minBottomThickness + "до" + maxbottomThickness + ".\n";
+                        ShowError(hint);
+                    }
+                    else if (value > 0.3 * Double.Parse(height_textBox.Text))
+                    {
+                        hint = "Нарушены пропорции стакана. Область допустимых значений толщины дна стакана: от " + minBottomThickness + "до" + (0.3 * Double.Parse(height_textBox.Text) + ".\n");
+                        ShowError(hint);
+
+                    }
+                    return;
+                case "height_textBox":
+                    if (value < minHeight || (value > maxHeight))
+                    {
+                        hint = "Область допустимых значений высоты стакана: от " + minHeight + "до" + maxHeight + ".\n";
+                        ShowError(hint);
+                    }
+                    return;
+                case "topRadius_textBox":
+                    if (value < minTopRadius || value > maxTopRadius)
+                    {
+                        hint = "Область допустимых значений горлышка стакана: от " + minTopRadius + "до" + maxTopRadius + ".\n";
+                        ShowError(hint);
+                    }
+                    else if (value < Double.Parse(bottomRadius_textBox.Text) || value > (1.5 * Double.Parse(bottomRadius_textBox.Text)))
+                    {
+                        hint = "Нарушены пропорции стакана. Область допустимых значений горлышка стакана: от " + Double.Parse(bottomRadius_textBox.Text) + "до" + (1.5 * Double.Parse(bottomRadius_textBox.Text)) + ".\n";
+                        ShowError(hint);
+                    }
+                    return;
+                case "topThickness_textBox":
+                    if (value > maxTopThickness)
+                    {
+                        hint = "Область допустимых значений толщины горлышка стакана: от 0 до" + maxTopThickness + ".\n";
+                        ShowError(hint);
+                    }
+                    else if ((0.15 * Double.Parse(height_textBox.Text)) < value)
+                    {
+                        hint = "Нарушены пропорции стакана. Область допустимых значений толщины горлышка стакана: от 0 до" + (0.15 * Double.Parse(height_textBox.Text)) + ".\n";
+                        ShowError(hint);
+                    }
+                    return;
+                case "topWidth_textBox":
+                    if (value > maxTopWidth)
+                    {
+                        hint = "Область допустимых значений ширины горлышка стакана: от 0 до" + maxTopWidth + ".\n";
+                        ShowError(hint);
+                    }
+                    return;
+                case "wallThickness_textBox":
+                    if (value < minWallThickness || (value > maxWallThickness))
+                    {
+                        hint = "Область допустимых значений толщины стенок стакана: от " + minBottomThickness + "до" + maxbottomThickness + ".\n";
+                        ShowError(hint);
+                    }
+                    else if (value > 0.2 * Double.Parse(bottomRadius_textBox.Text))
+                    {
+                        hint = "Нарушены пропорции стакана. Область допустимых значений толщины стенок стакана: от " + minWallThickness + "до" + (0.2 * Double.Parse(bottomRadius_textBox.Text) + ".\n");
+                        ShowError(hint);
+                    }
+                    return;
+
+            }
+        }
+
+        private void ShowError(string hint)
+        {
+            this.ActiveControl.BackColor = Color.Plum;
+            toolTip.Show(hint, this.ActiveControl);
         }
 
     }

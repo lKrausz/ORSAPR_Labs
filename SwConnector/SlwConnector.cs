@@ -1,25 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SolidWorks.Interop.sldworks;
-using SolidWorks.Interop.swcommands;
-using SolidWorks.Interop.swconst;
-using System.Diagnostics;
 
 namespace SwConnector
 {
+    /// <summary>
+    /// Класс, отвечающий за подключение к SOLIDWORKS
+    /// </summary>
     public class SlwConnector
     {
-
+        /// <summary>
+        /// Текущая сессия SOLIDWORKS
+        /// </summary>
         private SldWorks _swApp;
-
+        /// <summary>
+        /// Текущий документ SOLIDWORKS
+        /// </summary>
         private IModelDoc2 _swModel;
 
-        
         /// <summary>
-        /// Открытие Solidworks
+        /// Открытие SOLIDWORKS
         /// </summary>
         public SldWorks StartProcess()
         {     

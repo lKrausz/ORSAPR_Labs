@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SwConnector;
 using SolidWorks.Interop.sldworks;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Model
 {

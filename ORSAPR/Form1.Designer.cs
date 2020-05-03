@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buildButton = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,6 +55,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.baseParams.SuspendLayout();
             this.additionalParams.SuspendLayout();
             this.SuspendLayout();
@@ -62,9 +64,9 @@
             // 
             this.buildButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.buildButton.Location = new System.Drawing.Point(100, 296);
+            this.buildButton.Location = new System.Drawing.Point(100, 301);
             this.buildButton.Name = "buildButton";
-            this.buildButton.Size = new System.Drawing.Size(105, 28);
+            this.buildButton.Size = new System.Drawing.Size(180, 28);
             this.buildButton.TabIndex = 0;
             this.buildButton.Text = "Построить";
             this.buildButton.UseVisualStyleBackColor = true;
@@ -77,7 +79,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Бумага",
             "Стекло"});
-            this.comboBox1.Location = new System.Drawing.Point(156, 17);
+            this.comboBox1.Location = new System.Drawing.Point(232, 17);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(102, 21);
             this.comboBox1.TabIndex = 1;
@@ -94,50 +96,56 @@
             // 
             // bottomRadius_textBox
             // 
-            this.bottomRadius_textBox.Location = new System.Drawing.Point(143, 19);
+            this.bottomRadius_textBox.Location = new System.Drawing.Point(219, 19);
             this.bottomRadius_textBox.Name = "bottomRadius_textBox";
             this.bottomRadius_textBox.Size = new System.Drawing.Size(102, 20);
             this.bottomRadius_textBox.TabIndex = 3;
+            this.bottomRadius_textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.bottomRadius_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
             // 
             // topRadius_textBox
             // 
-            this.topRadius_textBox.Location = new System.Drawing.Point(143, 45);
+            this.topRadius_textBox.Location = new System.Drawing.Point(219, 45);
             this.topRadius_textBox.Name = "topRadius_textBox";
             this.topRadius_textBox.Size = new System.Drawing.Size(102, 20);
             this.topRadius_textBox.TabIndex = 4;
+            this.topRadius_textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.topRadius_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
             // 
             // height_textBox
             // 
-            this.height_textBox.Location = new System.Drawing.Point(143, 71);
+            this.height_textBox.Location = new System.Drawing.Point(219, 71);
             this.height_textBox.Name = "height_textBox";
             this.height_textBox.Size = new System.Drawing.Size(102, 20);
             this.height_textBox.TabIndex = 5;
+            this.height_textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.height_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
             // 
             // topThickness_textBox
             // 
-            this.topThickness_textBox.Location = new System.Drawing.Point(143, 18);
+            this.topThickness_textBox.Location = new System.Drawing.Point(219, 14);
             this.topThickness_textBox.Name = "topThickness_textBox";
             this.topThickness_textBox.Size = new System.Drawing.Size(102, 20);
             this.topThickness_textBox.TabIndex = 6;
+            this.topThickness_textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.topThickness_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
             // 
             // topWidth_textBox
             // 
-            this.topWidth_textBox.Location = new System.Drawing.Point(143, 44);
+            this.topWidth_textBox.Location = new System.Drawing.Point(219, 40);
             this.topWidth_textBox.Name = "topWidth_textBox";
             this.topWidth_textBox.Size = new System.Drawing.Size(102, 20);
             this.topWidth_textBox.TabIndex = 7;
+            this.topWidth_textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.topWidth_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
             // 
             // wallThickness_textBox
             // 
-            this.wallThickness_textBox.Location = new System.Drawing.Point(143, 70);
+            this.wallThickness_textBox.Location = new System.Drawing.Point(219, 66);
             this.wallThickness_textBox.Name = "wallThickness_textBox";
             this.wallThickness_textBox.Size = new System.Drawing.Size(102, 20);
             this.wallThickness_textBox.TabIndex = 8;
+            this.wallThickness_textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.wallThickness_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
             // 
             // label2
@@ -145,70 +153,71 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.Size = new System.Drawing.Size(151, 13);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Радиус дна:";
+            this.label2.Text = "Радиус дна: (от 15 до 80 мм)";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 48);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 13);
+            this.label3.Size = new System.Drawing.Size(190, 13);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Радиус горлышка:";
+            this.label3.Text = "Радиус горлышка: (от 15 до 120 мм)";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 99);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 13);
+            this.label4.Size = new System.Drawing.Size(155, 13);
             this.label4.TabIndex = 11;
-            this.label4.Text = "Толщина дна:";
+            this.label4.Text = "Толщина дна: (от 3 до 24 мм)";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(6, 21);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 13);
+            this.label5.Size = new System.Drawing.Size(165, 13);
             this.label5.TabIndex = 12;
-            this.label5.Text = "Толщина горлышка:";
+            this.label5.Text = "Толщина горлышка: (до 72 мм)";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(6, 47);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 13);
+            this.label6.Size = new System.Drawing.Size(158, 13);
             this.label6.TabIndex = 13;
-            this.label6.Text = "Ширина горлышка:";
+            this.label6.Text = "Ширина горлышка: (до 20 мм)";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(6, 73);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(94, 13);
+            this.label7.Size = new System.Drawing.Size(172, 13);
             this.label7.TabIndex = 14;
-            this.label7.Text = "Толщина стенок:";
+            this.label7.Text = "Толщина стенок: (от 3 до 16 мм)";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(6, 74);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(92, 13);
+            this.label8.Size = new System.Drawing.Size(182, 13);
             this.label8.TabIndex = 16;
-            this.label8.Text = "Высота стакана:";
+            this.label8.Text = "Высота стакана: (от 45 до 480 мм)";
             // 
             // bottomThickness_textBox
             // 
-            this.bottomThickness_textBox.Location = new System.Drawing.Point(143, 96);
+            this.bottomThickness_textBox.Location = new System.Drawing.Point(219, 92);
             this.bottomThickness_textBox.Name = "bottomThickness_textBox";
             this.bottomThickness_textBox.Size = new System.Drawing.Size(102, 20);
             this.bottomThickness_textBox.TabIndex = 15;
+            this.bottomThickness_textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.bottomThickness_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
             // 
             // baseParams
@@ -224,7 +233,7 @@
             this.baseParams.Controls.Add(this.label3);
             this.baseParams.Location = new System.Drawing.Point(13, 44);
             this.baseParams.Name = "baseParams";
-            this.baseParams.Size = new System.Drawing.Size(283, 102);
+            this.baseParams.Size = new System.Drawing.Size(361, 102);
             this.baseParams.TabIndex = 17;
             this.baseParams.TabStop = false;
             this.baseParams.Text = "Общие параметры";
@@ -232,7 +241,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(251, 74);
+            this.label11.Location = new System.Drawing.Point(327, 74);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(23, 13);
             this.label11.TabIndex = 19;
@@ -241,7 +250,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(251, 48);
+            this.label10.Location = new System.Drawing.Point(327, 48);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(23, 13);
             this.label10.TabIndex = 18;
@@ -250,7 +259,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(251, 22);
+            this.label9.Location = new System.Drawing.Point(327, 22);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(23, 13);
             this.label9.TabIndex = 17;
@@ -272,7 +281,7 @@
             this.additionalParams.Controls.Add(this.topWidth_textBox);
             this.additionalParams.Location = new System.Drawing.Point(13, 152);
             this.additionalParams.Name = "additionalParams";
-            this.additionalParams.Size = new System.Drawing.Size(283, 125);
+            this.additionalParams.Size = new System.Drawing.Size(361, 125);
             this.additionalParams.TabIndex = 18;
             this.additionalParams.TabStop = false;
             this.additionalParams.Text = "Дополнительные параметры";
@@ -280,7 +289,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(251, 96);
+            this.label15.Location = new System.Drawing.Point(327, 92);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(23, 13);
             this.label15.TabIndex = 21;
@@ -289,7 +298,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(251, 73);
+            this.label14.Location = new System.Drawing.Point(327, 69);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(23, 13);
             this.label14.TabIndex = 20;
@@ -298,7 +307,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(251, 47);
+            this.label13.Location = new System.Drawing.Point(327, 43);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(23, 13);
             this.label13.TabIndex = 19;
@@ -307,17 +316,24 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(251, 25);
+            this.label12.Location = new System.Drawing.Point(327, 21);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(23, 13);
             this.label12.TabIndex = 18;
             this.label12.Text = "мм";
             // 
+            // toolTip
+            // 
+            this.toolTip.AutoPopDelay = 5000;
+            this.toolTip.InitialDelay = 50;
+            this.toolTip.ReshowDelay = 500;
+            this.toolTip.ShowAlways = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(308, 336);
+            this.ClientSize = new System.Drawing.Size(383, 341);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.buildButton);
@@ -325,8 +341,6 @@
             this.Controls.Add(this.additionalParams);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(324, 375);
-            this.MinimumSize = new System.Drawing.Size(324, 375);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GlassBuilder";
@@ -367,6 +381,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 
