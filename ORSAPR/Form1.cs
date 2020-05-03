@@ -120,6 +120,7 @@ namespace GUI
         private void Validation(string name, double value)
         {
             this.ActiveControl.BackColor = Color.White;
+            buildButton.Enabled = true;
             string hint;
             switch (name)
             {
@@ -201,6 +202,7 @@ namespace GUI
         {
             this.ActiveControl.BackColor = Color.Plum;
             toolTip.Show(hint, this.ActiveControl);
+            buildButton.Enabled = false;
         }
 
     }
