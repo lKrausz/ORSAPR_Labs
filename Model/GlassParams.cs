@@ -80,9 +80,6 @@ namespace Model
         /// <summary>
         /// Конструктор для стакана из бумаги
         /// </summary>
-        /// <param name="bottomRadius"></param>
-        /// <param name="height"></param>
-        /// <param name="topRadius"></param>
         public GlassParams(double bottomRadius, double height, double topRadius)
         {
             // Перевод введенных параметров в метры,
