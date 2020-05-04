@@ -56,6 +56,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.helpButton = new System.Windows.Forms.Button();
             this.baseParams.SuspendLayout();
             this.additionalParams.SuspendLayout();
             this.SuspendLayout();
@@ -329,11 +330,22 @@
             this.toolTip.ReshowDelay = 500;
             this.toolTip.ShowAlways = true;
             // 
+            // helpButton
+            // 
+            this.helpButton.Location = new System.Drawing.Point(343, 304);
+            this.helpButton.Name = "helpButton";
+            this.helpButton.Size = new System.Drawing.Size(28, 25);
+            this.helpButton.TabIndex = 19;
+            this.helpButton.Text = "?";
+            this.helpButton.UseVisualStyleBackColor = true;
+            this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(383, 341);
+            this.Controls.Add(this.helpButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.buildButton);
@@ -384,6 +396,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Button helpButton;
     }
 }
 

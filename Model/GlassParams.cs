@@ -95,8 +95,9 @@ namespace Model
             _topWidth = papperTopWidth/1000;
             _wallThickness = papperThicknes/1000;
         }
-            #region Get properties
-            public double GetBottomRadius()
+
+#region Get properties
+        public double GetBottomRadius()
         {
             return _bottomRadius;
         }
@@ -125,6 +126,6 @@ namespace Model
         {
             return _wallThickness;
         }
-        #endregion
+#endregion
     }
 }
