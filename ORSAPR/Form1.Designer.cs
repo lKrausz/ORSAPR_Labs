@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.buildButton = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.material_comboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.bottomRadius_textBox = new System.Windows.Forms.TextBox();
             this.topRadius_textBox = new System.Windows.Forms.TextBox();
@@ -73,18 +73,18 @@
             this.buildButton.UseVisualStyleBackColor = true;
             this.buildButton.Click += new System.EventHandler(this.buildButton_Click);
             // 
-            // comboBox1
+            // material_comboBox
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.material_comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.material_comboBox.FormattingEnabled = true;
+            this.material_comboBox.Items.AddRange(new object[] {
             "Бумага",
             "Стекло"});
-            this.comboBox1.Location = new System.Drawing.Point(232, 17);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(102, 21);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.material_comboBox.Location = new System.Drawing.Point(232, 17);
+            this.material_comboBox.Name = "material_comboBox";
+            this.material_comboBox.Size = new System.Drawing.Size(102, 21);
+            this.material_comboBox.TabIndex = 1;
+            this.material_comboBox.SelectedIndexChanged += new System.EventHandler(this.material_comboBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -347,7 +347,7 @@
             this.ClientSize = new System.Drawing.Size(383, 341);
             this.Controls.Add(this.helpButton);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.material_comboBox);
             this.Controls.Add(this.buildButton);
             this.Controls.Add(this.baseParams);
             this.Controls.Add(this.additionalParams);
@@ -370,7 +370,7 @@
         #endregion
 
         private System.Windows.Forms.Button buildButton;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox material_comboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox bottomRadius_textBox;
         private System.Windows.Forms.TextBox topRadius_textBox;

@@ -11,7 +11,7 @@ namespace Model
         /// <summary>
         /// Метод для построения стакана
         /// </summary>
-        /// <param name="swModel"></param>
+        /// <param name="swModel">Текущий документ SOLIDWORKS</param>
         /// <param name="glass">Параметры стакана</param>
         public void BuildGlass(IModelDoc2 swModel, GlassParams glass)
         {
@@ -50,11 +50,11 @@ namespace Model
         /// <summary>
         /// Метод для создания новой окружности
         /// </summary>
-        /// <param name="swModel"></param>
+        /// <param name="swModel">Текущий документ SOLIDWORKS</param>
         /// <param name="Name">Имя плоскости, на которой будет расположена окружность</param>
         /// <param name="Type">Тип плоскости, на которой будет расположена окружность</param>
         /// <param name="R">Радиус окружности</param>
-        public void CreateCircle(IModelDoc2 swModel, string Name, string Type, double R)
+        private void CreateCircle(IModelDoc2 swModel, string Name, string Type, double R)
         {
             swModel.SketchManager.InsertSketch(true);
             swModel.Extension.SelectByID2(Name, Type, 0, 0, 0, false, 0, null, 0);
@@ -65,9 +65,9 @@ namespace Model
         /// <summary>
         /// Метод для создания новой точки
         /// </summary>
-        /// <param name="swModel"></param>
+        /// <param name="swModel">Текущий документ SOLIDWORKS</param>
         /// <param name="height">Координата Y точки, отвечающая за высоту</param>
-        public void CreatePoint(IModelDoc2 swModel, double height)
+        private void CreatePoint(IModelDoc2 swModel, double height)
         {
             swModel.Extension.SelectByID2("Спереди", "PLANE", 0, 0, 0, false, 0, null, 0);
             swModel.SketchManager.InsertSketch(true);
@@ -78,10 +78,10 @@ namespace Model
         /// <summary>
         /// Метод для создания новой плоскости
         /// </summary>
-        /// <param name="swModel"></param>
+        /// <param name="swModel">Текущий документ SOLIDWORKS</param>
         /// <param name="Name">Имя точки, через которую строится плоскость</param>
         /// <param name="height">Координата Y точки, отвечающая за высоту</param>
-        public void CreateSketchPlane(IModelDoc2 swModel, string Name, double height)
+        private void CreateSketchPlane(IModelDoc2 swModel, string Name, double height)
         {
             swModel.SketchManager.Insert3DSketch(true);
             swModel.Extension.SelectByID2("Сверху", "PLANE", 0, 0, 0, false, 0, null, 0);

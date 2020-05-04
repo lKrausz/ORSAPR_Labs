@@ -15,7 +15,7 @@ namespace GUI
         public Form1()
         {
             InitializeComponent();
-            comboBox1.SelectedItem = "Стекло";
+            material_comboBox.SelectedItem = "Стекло";
             ShowHelper();
         }
         SldWorks swApp;
@@ -28,7 +28,7 @@ namespace GUI
             try
             {
                 GlassParams glass;
-                if (((string)comboBox1.Text) == "Стекло")
+                if (((string)material_comboBox.Text) == "Стекло")
                 {
                     glass = new GlassParams(double.Parse(bottomRadius_textBox.Text),
                     double.Parse(bottomThickness_textBox.Text),
@@ -59,9 +59,9 @@ namespace GUI
         /// <summary>
         /// Скрытие/Демонстрация дополнительных параметров стакана при смене материала
         /// </summary>
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void material_comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (((string)comboBox1.Text) == "Стекло")
+            if (((string)material_comboBox.Text) == "Стекло")
             {
                 additionalParams.Visible = true;
             }
