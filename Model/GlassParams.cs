@@ -61,7 +61,6 @@ namespace Model
         public const double PaperTopWidth = 3;
         #endregion
 
-
         /// <summary>
         /// Конструктор для стакана из стекла
         /// </summary>

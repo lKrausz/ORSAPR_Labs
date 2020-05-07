@@ -7,8 +7,8 @@ namespace NUnitTest
     [TestFixture]
     public class GlassParamsTest
     {
-        private GlassParams _glass;
-        private GlassParams _paperGlass;
+        private GlassParams _glass = new GlassParams(15, 20, 45, 3, 3, 3, 3);
+        private GlassParams _paperGlass = new GlassParams(15, 20, 45);
 
         [Test]
         [TestCase(0.015, 0.02, 0.045, 0.003, 0.003, 0.003, 0.003, TestName = "“ест конструктора дл€ стекл€нного стакана ")]
