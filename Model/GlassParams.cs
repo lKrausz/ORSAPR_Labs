@@ -9,37 +9,37 @@ namespace Model
         /// <summary>
         /// Радиус дна стакана
         /// </summary>
-        private double _bottomRadius;
+        public double BottomRadius { get; private set; }
 
         /// <summary>
         /// Толщина дна стакана
         /// </summary>
-        private double _bottomThickness;
+        public double BottomThickness { get; private set; }
 
         /// <summary>
         /// Высота стакана
         /// </summary>
-        private double _height;
+        public double Height { get; private set; }
 
         /// <summary>
         /// Радиус горлышка стакана
         /// </summary>
-        private double _topRadius;
+        public double TopRadius { get; private set; }
 
         /// <summary>
         /// Толщина горлышка стакана
         /// </summary>
-        private double _topThickness;
+        public double TopThickness { get; private set; }
 
         /// <summary>
         /// Ширина горлышка стакана
         /// </summary>
-        private double _topWidth;
+        public double TopWidth { get; private set; }
 
         /// <summary>
         /// Толщина стенок стакана
         /// </summary>
-        private double _wallThickness;
+        public double WallThickness { get; private set; }
         #endregion
 
         #region Const
@@ -48,19 +48,19 @@ namespace Model
         /// <summary>
         /// Значение толщины бумаги в мм
         /// </summary>
-        double papperThicknes = 4;
+        public const double PaperThicknes = 4;
 
         /// <summary>
         /// Значение толщины горлышка для бумажного стакана в мм
         /// </summary>
-        double papperTopThickness = 5;
+        public const double PaperTopThickness = 5;
 
         /// <summary>
         /// Значение ширины горлышка для бумажного стакана в мм
         /// </summary>
-        double papperTopWidth = 3;
-
+        public const double PaperTopWidth = 3;
         #endregion
+
 
         /// <summary>
         /// Конструктор для стакана из стекла
@@ -69,13 +69,13 @@ namespace Model
             double topThickness, double topWidth, double wallThickness)
         {
             // Перевод введенных параметров в метры
-            _bottomRadius = bottomRadius/1000;
-            _bottomThickness = bottomThickness/1000;
-            _height = height/1000;
-            _topRadius = topRadius/1000;
-            _topThickness = topThickness/1000;
-            _topWidth = topWidth/1000;
-            _wallThickness = wallThickness/1000;
+            BottomRadius = bottomRadius/1000;
+            BottomThickness = bottomThickness/1000;
+            Height = height/1000;
+            TopRadius = topRadius/1000;
+            TopThickness = topThickness/1000;
+            TopWidth = topWidth/1000;
+            WallThickness = wallThickness/1000;
         }
         /// <summary>
         /// Конструктор для стакана из бумаги
@@ -84,45 +84,14 @@ namespace Model
         {
             // Перевод введенных параметров в метры,
             // присвоение значений, заданных константами
-            _bottomRadius = bottomRadius/1000;
-            _bottomThickness = papperThicknes/1000;
-            _height = height/1000;
-            _topRadius = topRadius/1000;
-            _topThickness = papperTopThickness/1000;
-            _topWidth = papperTopWidth/1000;
-            _wallThickness = papperThicknes/1000;
+            BottomRadius = bottomRadius/1000;
+            BottomThickness = PaperThicknes/1000;
+            Height = height/1000;
+            TopRadius = topRadius/1000;
+            TopThickness = PaperTopThickness/1000;
+            TopWidth = PaperTopWidth/1000;
+            WallThickness = PaperThicknes/1000;
         }
 
-#region Get properties
-        public double GetBottomRadius()
-        {
-            return _bottomRadius;
-        }
-
-        public double GetBottomThickness()
-        {
-            return _bottomThickness;
-        }
-        public double GetHeight()
-        {
-            return _height;
-        }
-        public double GetTopRadius()
-        {
-            return _topRadius;
-        }
-        public double GetTopThickness()
-        {
-            return _topThickness;
-        }
-        public double GetTopWidth()
-        {
-            return _topWidth;
-        }
-        public double GetWallThickness()
-        {
-            return _wallThickness;
-        }
-#endregion
     }
 }

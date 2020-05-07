@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class Form1
+    partial class glassBuilderForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -340,7 +340,7 @@
             this.helpButton.UseVisualStyleBackColor = true;
             this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
             // 
-            // Form1
+            // glassBuilderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -355,7 +355,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(399, 380);
             this.MinimumSize = new System.Drawing.Size(399, 380);
-            this.Name = "Form1";
+            this.Name = "glassBuilderForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GlassBuilder";
             this.baseParams.ResumeLayout(false);

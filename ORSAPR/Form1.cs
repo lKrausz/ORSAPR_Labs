@@ -10,9 +10,9 @@ using System.Drawing;
 
 namespace GUI
 {
-    public partial class Form1 : Form
+    public partial class glassBuilderForm : Form
     {
-        public Form1()
+        public glassBuilderForm()
         {
             InitializeComponent();
             material_comboBox.SelectedItem = "Стекло";
@@ -72,24 +72,24 @@ namespace GUI
         }
 
         #region Значение max и min значений параметров стакана
-        int minBottomRadius = 15;
-        int maxBottomRadius = 80;
+        private const int MinBottomRadius = 15;
+        private const int MaxBottomRadius = 80;
 
-        int minTopRadius = 15;
-        int maxTopRadius = 120;
+        private const int MinTopRadius = 15;
+        private const int MaxTopRadius = 120;
 
-        int minHeight = 45;
-        int maxHeight = 480;
+        private const int MinHeight = 45;
+        private const int MaxHeight = 480;
 
-        int maxTopThickness = 72;
+        private const int MaxTopThickness = 72;
 
-        int maxTopWidth = 20;
+        private const int MaxTopWidth = 20;
 
-        int minWallThickness = 3;
-        int maxWallThickness = 16;
+        private const int MinWallThickness = 3;
+        private const int MaxWallThickness = 16;
 
-        int minBottomThickness = 3;
-        int maxbottomThickness = 24;
+        private const int MinBottomThickness = 3;
+        private const int MaxbottomThickness = 24;
         #endregion
 
         /// <summary>
@@ -126,44 +126,44 @@ namespace GUI
             switch (name)
             {
                 case ("bottomRadius_textBox"):
-                    if (value < minBottomRadius || value > maxBottomRadius)
+                    if (value < MinBottomRadius || value > MaxBottomRadius)
                     {
                         hint = "Область допустимых значений дна стакана: " +
-                            "от " + minBottomRadius + " до " + maxBottomRadius + ".\n";
+                            "от " + MinBottomRadius + " до " + MaxBottomRadius + ".\n";
                         ShowError(hint);
                     }
                     return;
 
                 case "bottomThickness_textBox":
-                    if (value < minBottomThickness || (value > maxbottomThickness))
+                    if (value < MinBottomThickness || (value > MaxbottomThickness))
                     {
                         hint = "Область допустимых значений толщины дна стакана: " +
-                            "от " + minBottomThickness + " до " + maxbottomThickness + ".\n";
+                            "от " + MinBottomThickness + " до " + MaxbottomThickness + ".\n";
                         ShowError(hint);
                     }
                     else if (value > 0.3 * Double.Parse(height_textBox.Text))
                     {
                         hint = "Нарушены пропорции стакана. Область допустимых значений толщины дна стакана: " +
-                            "от " + minBottomThickness + " до " + (0.3 * Double.Parse(height_textBox.Text) + ".\n");
+                            "от " + MinBottomThickness + " до " + (0.3 * Double.Parse(height_textBox.Text) + ".\n");
                         ShowError(hint);
 
                     }
                     return;
 
                 case "height_textBox":
-                    if (value < minHeight || (value > maxHeight))
+                    if (value < MinHeight || (value > MaxHeight))
                     {
                         hint = "Область допустимых значений высоты стакана: " +
-                            "от " + minHeight + " до " + maxHeight + ".\n";
+                            "от " + MinHeight + " до " + MaxHeight + ".\n";
                         ShowError(hint);
                     }
                     return;
 
                 case "topRadius_textBox":
-                    if (value < minTopRadius || value > maxTopRadius)
+                    if (value < MinTopRadius || value > MaxTopRadius)
                     {
                         hint = "Область допустимых значений горлышка стакана: " +
-                            "от " + minTopRadius + " до " + maxTopRadius + ".\n";
+                            "от " + MinTopRadius + " до " + MaxTopRadius + ".\n";
                         ShowError(hint);
                     }
                     else if (value < Double.Parse(bottomRadius_textBox.Text) || value > (1.5 * Double.Parse(bottomRadius_textBox.Text)))
@@ -175,10 +175,10 @@ namespace GUI
                     return;
 
                 case "topThickness_textBox":
-                    if (value > maxTopThickness)
+                    if (value > MaxTopThickness)
                     {
                         hint = "Область допустимых значений толщины горлышка стакана: " +
-                            "от 0 до " + maxTopThickness + ".\n";
+                            "от 0 до " + MaxTopThickness + ".\n";
                         ShowError(hint);
                     }
                     else if ((0.15 * Double.Parse(height_textBox.Text)) < value)
@@ -190,25 +190,25 @@ namespace GUI
                     return;
 
                 case "topWidth_textBox":
-                    if (value > maxTopWidth)
+                    if (value > MaxTopWidth)
                     {
                         hint = "Область допустимых значений ширины горлышка стакана: " +
-                            "от 0 до " + maxTopWidth + ".\n";
+                            "от 0 до " + MaxTopWidth + ".\n";
                         ShowError(hint);
                     }
                     return;
 
                 case "wallThickness_textBox":
-                    if (value < minWallThickness || (value > maxWallThickness))
+                    if (value < MinWallThickness || (value > MaxWallThickness))
                     {
                         hint = "Область допустимых значений толщины стенок стакана: " +
-                            "от " + minBottomThickness + " до " + maxbottomThickness + ".\n";
+                            "от " + MinBottomThickness + " до " + MaxbottomThickness + ".\n";
                         ShowError(hint);
                     }
                     else if (value > 0.2 * Double.Parse(bottomRadius_textBox.Text))
                     {
                         hint = "Нарушены пропорции стакана. Область допустимых значений толщины стенок стакана: " +
-                            "от " + minWallThickness + " до " + (0.2 * Double.Parse(bottomRadius_textBox.Text) + ".\n");
+                            "от " + MinWallThickness + " до " + (0.2 * Double.Parse(bottomRadius_textBox.Text) + ".\n");
                         ShowError(hint);
                     }
                     return;

@@ -15,10 +15,10 @@ namespace Model
         /// <param name="glass">Параметры стакана</param>
         public void BuildGlass(IModelDoc2 swModel, GlassParams glass)
         {
-            CreatePoint(swModel, glass.GetHeight());
-            CreateSketchPlane(swModel, "Point1@Эскиз1", glass.GetHeight());
-            CreateCircle(swModel, "Plane2@Трехмерный эскиз1", "EXTSKETCHSURFACES", glass.GetTopRadius());
-            CreateCircle(swModel, "Сверху", "PLANE", glass.GetBottomRadius());
+            CreatePoint(swModel, glass.Height);
+            CreateSketchPlane(swModel, "Point1@Эскиз1", glass.Height);
+            CreateCircle(swModel, "Plane2@Трехмерный эскиз1", "EXTSKETCHSURFACES", glass.TopRadius);
+            CreateCircle(swModel, "Сверху", "PLANE", glass.BottomRadius);
 
             //Выдавливание элемента по двум сечениям (основа стакана)
             swModel.Extension.SelectByID2("Эскиз2", "SKETCH", 0, 0, 0, false, 1, null, 0);
@@ -26,10 +26,10 @@ namespace Model
             swModel.FeatureManager.InsertProtrusionBlend(false, true, false, 1, 0, 0, 1, 1, true, true, false, 0, 0, 0, true, true, true);            
             swModel.ClearSelection2(true);
 
-            CreateCircle(swModel, "Plane2@Трехмерный эскиз1", "EXTSKETCHSURFACES", glass.GetTopRadius() - glass.GetWallThickness());
-            CreatePoint(swModel, glass.GetBottomThickness());
-            CreateSketchPlane(swModel, "Point1@Эскиз5", glass.GetBottomThickness());
-            CreateCircle(swModel, "Plane2@Трехмерный эскиз2", "EXTSKETCHSURFACES", glass.GetBottomRadius() - glass.GetWallThickness());
+            CreateCircle(swModel, "Plane2@Трехмерный эскиз1", "EXTSKETCHSURFACES", glass.TopRadius - glass.WallThickness);
+            CreatePoint(swModel, glass.BottomThickness);
+            CreateSketchPlane(swModel, "Point1@Эскиз5", glass.BottomThickness);
+            CreateCircle(swModel, "Plane2@Трехмерный эскиз2", "EXTSKETCHSURFACES", glass.BottomRadius - glass.WallThickness);
 
             //Вырез по двум сечениям (внутренняя часть стакана)
             swModel.Extension.SelectByID2("Эскиз4", "SKETCH", 0, 0, 0, false, 1, null, 0);
@@ -39,12 +39,12 @@ namespace Model
 
             //Выдавливание горлышка
             swModel.Extension.SelectByID2("Эскиз2", "SKETCH", 0, 0, 0, false, 0, null, 0);
-            Object myFeature = swModel.FeatureManager.FeatureExtrusion2(true, false, true, 0, 0, glass.GetTopThickness(), glass.GetTopWidth(), false, false, false, false, 0, 0, false, false, false, false, true, true, true, 0, 0, false);
+            Object myFeature = swModel.FeatureManager.FeatureExtrusion2(true, false, true, 0, 0, glass.TopThickness, glass.TopWidth, false, false, false, false, 0, 0, false, false, false, false, true, true, true, 0, 0, false);
             swModel.ClearSelection2(true);
             
             //Вырез горлышка
             swModel.Extension.SelectByID2("Эскиз4", "SKETCH", 0, 0, 0, false, 0, null, 0);
-            myFeature = swModel.FeatureManager.FeatureCut4(true, false, false, 0, 0, glass.GetTopThickness(), glass.GetTopWidth(), false, false, false, false, 0, 0, false, false, false, false, false, true, true, true, true, false, 0, 0, false, false);
+            myFeature = swModel.FeatureManager.FeatureCut4(true, false, false, 0, 0, glass.TopThickness, glass.TopWidth, false, false, false, false, 0, 0, false, false, false, false, false, true, true, true, true, false, 0, 0, false, false);
 
         }
         /// <summary>

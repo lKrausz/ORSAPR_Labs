@@ -18,25 +18,25 @@ namespace NUnitTest
             var actual = _glass;
 
             Assert.AreEqual
-                (bottomRadius, actual.GetBottomRadius(),
+                (bottomRadius, actual.BottomRadius,
                 "Некорректное значение радиуса дна");
             Assert.AreEqual
-                (topRadius, actual.GetTopRadius(),
+                (topRadius, actual.TopRadius,
                 "Некорректное значение радиуса горлышка");
             Assert.AreEqual
-                 (height, actual.GetHeight(),
+                 (height, actual.Height,
                 "Некорректное значение высоты");
             Assert.AreEqual
-                (topThickness, actual.GetTopThickness(),
+                (topThickness, actual.TopThickness,
                 "Некорректное значение толщины горлышка");
             Assert.AreEqual
-                 (topWidth, actual.GetTopWidth(),
+                 (topWidth, actual.TopWidth,
                 "Некорректное значение ширины горлышка");
             Assert.AreEqual
-               (bottomThickness, actual.GetBottomThickness(),
+               (bottomThickness, actual.BottomThickness,
                "Некорректное значение толщины дна");
             Assert.AreEqual
-                 (wallThickness, actual.GetWallThickness(),
+                 (wallThickness, actual.WallThickness,
                 "Некорректное значение толщины стенок");
         }
 
@@ -47,13 +47,13 @@ namespace NUnitTest
             var actual = _paperGlass;
 
             Assert.AreEqual
-                (bottomRadius, actual.GetBottomRadius(),
+                (bottomRadius, actual.BottomRadius,
                 "Некорректное значение радиуса дна");
             Assert.AreEqual
-                (topRadius, actual.GetTopRadius(),
+                (topRadius, actual.TopRadius,
                 "Некорректное значение радиуса горлышка");
             Assert.AreEqual
-                 (height, actual.GetHeight(),
+                 (height, actual.Height,
                 "Некорректное значение высоты");
            
         }
