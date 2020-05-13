@@ -48,17 +48,17 @@ namespace Model
         /// <summary>
         /// Значение толщины бумаги в мм
         /// </summary>
-        public const double PaperThicknes = 4;
+        private const double PaperThicknes = 4;
 
         /// <summary>
         /// Значение толщины горлышка для бумажного стакана в мм
         /// </summary>
-        public const double PaperTopThickness = 5;
+        private const double PaperTopThickness = 5;
 
         /// <summary>
         /// Значение ширины горлышка для бумажного стакана в мм
         /// </summary>
-        public const double PaperTopWidth = 3;
+        private const double PaperTopWidth = 3;
         #endregion
 
         /// <summary>

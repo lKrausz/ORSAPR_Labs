@@ -18,10 +18,10 @@ namespace GUI
             material_comboBox.SelectedItem = "Стекло";
             ShowHelper();
         }
-        SldWorks swApp;
-        IModelDoc2 swModel;
-        SlwConnector connector = new SlwConnector();
-        GlassBuilder builder = new GlassBuilder();
+
+        private SlwConnector _connector = new SlwConnector();
+
+        private GlassBuilder _builder = new GlassBuilder();
 
         private void buildButton_Click(object sender, EventArgs e)
         {
@@ -45,9 +45,9 @@ namespace GUI
                     double.Parse(height_textBox.Text),
                     double.Parse(topRadius_textBox.Text));
                 }
-                swApp = connector.StartProcess();
-                swModel = connector.CreateDocument();
-                builder.BuildGlass(swModel, glass);
+                SldWorks swApp = _connector.StartProcess();
+                IModelDoc2 swModel = _connector.CreateDocument();
+                _builder.BuildGlass(swModel, glass);
             }
             catch (FormatException)
             {
