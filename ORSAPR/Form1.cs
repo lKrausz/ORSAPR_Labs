@@ -6,8 +6,6 @@ using Model;
 using System.Text.RegularExpressions;
 using System.Drawing;
 
-
-
 namespace GUI
 {
     public partial class glassBuilderForm : Form
@@ -81,8 +79,10 @@ namespace GUI
         private const int MinHeight = 45;
         private const int MaxHeight = 480;
 
+        private const int MinTopThickness = 0;
         private const int MaxTopThickness = 72;
 
+        private const int MinTopWidth = 0;
         private const int MaxTopWidth = 20;
 
         private const int MinWallThickness = 3;
@@ -99,7 +99,9 @@ namespace GUI
         {
             e.Handled = !Regex.IsMatch(e.KeyChar.ToString(), @"[\d\b,]");
         }
-
+        /// <summary>
+        /// При изменении значения в textBox вызывается метод валидации для проверки введенного параметра на корректность.
+        /// </summary>
         private void textBox_TextChanged(object sender, EventArgs e)
         {
             string name = this.ActiveControl.Name;
@@ -109,8 +111,7 @@ namespace GUI
                 value = Double.Parse(this.ActiveControl.Text);
                 Validation(name, value);
             }
-
-            else ShowError("Требуется заполнение поля");
+            else ShowError("Требуется заполнение поля.");
         }
 
         /// <summary>
@@ -122,95 +123,48 @@ namespace GUI
         {
             this.ActiveControl.BackColor = Color.White;
             buildButton.Enabled = true;
-            string hint;
+            double minDependentParameter;
+            double maxDependentParameter;
             switch (name)
             {
                 case ("bottomRadius_textBox"):
-                    if (value < MinBottomRadius || value > MaxBottomRadius)
-                    {
-                        hint = "Область допустимых значений дна стакана: " +
-                            "от " + MinBottomRadius + " до " + MaxBottomRadius + ".\n";
-                        ShowError(hint);
-                    }
+                    IsCorrect(MinBottomRadius,value, MaxBottomRadius);                  
                     return;
 
                 case "bottomThickness_textBox":
-                    if (value < MinBottomThickness || (value > MaxbottomThickness))
-                    {
-                        hint = "Область допустимых значений толщины дна стакана: " +
-                            "от " + MinBottomThickness + " до " + MaxbottomThickness + ".\n";
-                        ShowError(hint);
-                    }
-                    else if (value > 0.3 * Double.Parse(height_textBox.Text))
-                    {
-                        hint = "Нарушены пропорции стакана. Область допустимых значений толщины дна стакана: " +
-                            "от " + MinBottomThickness + " до " + (0.3 * Double.Parse(height_textBox.Text) + ".\n");
-                        ShowError(hint);
-
-                    }
+                    IsCorrect(MinBottomThickness, value, MaxbottomThickness);
+                    minDependentParameter = 0;
+                    maxDependentParameter = 0.3 * Double.Parse(height_textBox.Text);
+                    IsCorrect(minDependentParameter, value, maxDependentParameter);
                     return;
 
                 case "height_textBox":
-                    if (value < MinHeight || (value > MaxHeight))
-                    {
-                        hint = "Область допустимых значений высоты стакана: " +
-                            "от " + MinHeight + " до " + MaxHeight + ".\n";
-                        ShowError(hint);
-                    }
+                    IsCorrect(MinHeight, value, MaxHeight);                 
                     return;
 
                 case "topRadius_textBox":
-                    if (value < MinTopRadius || value > MaxTopRadius)
-                    {
-                        hint = "Область допустимых значений горлышка стакана: " +
-                            "от " + MinTopRadius + " до " + MaxTopRadius + ".\n";
-                        ShowError(hint);
-                    }
-                    else if (value < Double.Parse(bottomRadius_textBox.Text) || value > (1.5 * Double.Parse(bottomRadius_textBox.Text)))
-                    {
-                        hint = "Нарушены пропорции стакана. Область допустимых значений горлышка стакана: " +
-                            "от " + Double.Parse(bottomRadius_textBox.Text) + " до " + (1.5 * Double.Parse(bottomRadius_textBox.Text)) + ".\n";
-                        ShowError(hint);
-                    }
+                    IsCorrect(MinTopRadius, value, MaxTopRadius);
+                    minDependentParameter = Double.Parse(bottomRadius_textBox.Text);
+                    maxDependentParameter = 1.5 * Double.Parse(bottomRadius_textBox.Text);
+                    IsCorrect(minDependentParameter, value, maxDependentParameter);
                     return;
 
                 case "topThickness_textBox":
-                    if (value > MaxTopThickness)
-                    {
-                        hint = "Область допустимых значений толщины горлышка стакана: " +
-                            "от 0 до " + MaxTopThickness + ".\n";
-                        ShowError(hint);
-                    }
-                    else if ((0.15 * Double.Parse(height_textBox.Text)) < value)
-                    {
-                        hint = "Нарушены пропорции стакана. Область допустимых значений толщины горлышка стакана: " +
-                            "от 0 до " + (0.15 * Double.Parse(height_textBox.Text)) + ".\n";
-                        ShowError(hint);
-                    }
+                    IsCorrect(MinTopThickness, value, MaxTopThickness);
+                    minDependentParameter = 0;
+                    maxDependentParameter = 0.15 * Double.Parse(height_textBox.Text);
+                    IsCorrect(minDependentParameter, value, maxDependentParameter);
                     return;
 
                 case "topWidth_textBox":
-                    if (value > MaxTopWidth)
-                    {
-                        hint = "Область допустимых значений ширины горлышка стакана: " +
-                            "от 0 до " + MaxTopWidth + ".\n";
-                        ShowError(hint);
-                    }
+                    IsCorrect(MinTopWidth, value, MaxTopWidth);
                     return;
 
                 case "wallThickness_textBox":
-                    if (value < MinWallThickness || (value > MaxWallThickness))
-                    {
-                        hint = "Область допустимых значений толщины стенок стакана: " +
-                            "от " + MinBottomThickness + " до " + MaxbottomThickness + ".\n";
-                        ShowError(hint);
-                    }
-                    else if (value > 0.2 * Double.Parse(bottomRadius_textBox.Text))
-                    {
-                        hint = "Нарушены пропорции стакана. Область допустимых значений толщины стенок стакана: " +
-                            "от " + MinWallThickness + " до " + (0.2 * Double.Parse(bottomRadius_textBox.Text) + ".\n");
-                        ShowError(hint);
-                    }
+                    IsCorrect(MinWallThickness, value, MaxWallThickness);
+                    minDependentParameter = 0;
+                    maxDependentParameter = 0.2 * Double.Parse(bottomRadius_textBox.Text);
+                    IsCorrect(minDependentParameter, value, maxDependentParameter);
                     return;
 
             }
@@ -225,11 +179,16 @@ namespace GUI
             toolTip.Show(hint, this.ActiveControl);
             buildButton.Enabled = false;
         }
-
+        /// <summary>
+        /// Вызов окна с подсказкой по оформлению
+        /// </summary>
         private void helpButton_Click(object sender, EventArgs e)
         {
             ShowHelper();
         }
+        /// <summary>
+        /// Вывод окна с подсказкой по оформлению
+        /// </summary>
         private void ShowHelper()
         {
             MessageBox.Show("Обратите внимание на правила заполнения: \n " +
@@ -239,6 +198,22 @@ namespace GUI
                 "4. Толщина стенок стакана не может быть больше чем 0,2 радиуса дна стакана;\n\n" +
                 "Данную справку вы можете вызвать в любое время при помощи кнопки '?' в нижнем правом углу.",
                    "Справка", MessageBoxButtons.OK, MessageBoxIcon.Question);
+        }
+        /// <summary>
+        /// Проверка на нахождение введенного значения в допустимых границах
+        /// </summary>
+        /// <param name="minValue">Минимальное значение</param>
+        /// <param name="value">Введенное значение</param>
+        /// <param name="maxValue">Максимальное значение</param>
+        private void IsCorrect(double minValue, double value, double maxValue)
+        {
+            string hint;
+            if (value < minValue || value > maxValue)
+            {
+                hint = "Область допустимых значений: " +
+                    "от " + minValue + " до " + maxValue + ".\n";
+                ShowError(hint);
+            }
         }
     }
 }
