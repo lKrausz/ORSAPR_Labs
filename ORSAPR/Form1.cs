@@ -105,11 +105,12 @@ namespace GUI
         private void textBox_TextChanged(object sender, EventArgs e)
         {
             string name = this.ActiveControl.Name;
+            TextView type = (TextView)sender;
             double value;
             if (this.ActiveControl.Text != "")
             {
                 value = Double.Parse(this.ActiveControl.Text);
-                Validation(name, value);
+                Validation(type.Type, value);
             }
             else ShowError("Требуется заполнение поля.");
         }
@@ -119,48 +120,48 @@ namespace GUI
         /// </summary>
         /// <param name="name"> Имя активного textBox </param>
         /// <param name="value"> Введенное в textBox значение </param>
-        private void Validation(string name, double value)
+        private void Validation(TextViewType type, double value)
         {
             this.ActiveControl.BackColor = Color.White;
             buildButton.Enabled = true;
             double minDependentParameter;
             double maxDependentParameter;
-            switch (name)
+            switch (type)
             {
-                case ("bottomRadius_textBox"):
+                case TextViewType.BottomRadius:
                     IsCorrect(MinBottomRadius,value, MaxBottomRadius);                  
                     return;
 
-                case "bottomThickness_textBox":
+                case TextViewType.BottomThickness:
                     IsCorrect(MinBottomThickness, value, MaxbottomThickness);
                     minDependentParameter = 0;
                     maxDependentParameter = 0.3 * Double.Parse(height_textBox.Text);
                     IsCorrect(minDependentParameter, value, maxDependentParameter);
                     return;
 
-                case "height_textBox":
+                case TextViewType.Height:
                     IsCorrect(MinHeight, value, MaxHeight);                 
                     return;
 
-                case "topRadius_textBox":
+                case TextViewType.TopRadius:
                     IsCorrect(MinTopRadius, value, MaxTopRadius);
                     minDependentParameter = Double.Parse(bottomRadius_textBox.Text);
                     maxDependentParameter = 1.5 * Double.Parse(bottomRadius_textBox.Text);
                     IsCorrect(minDependentParameter, value, maxDependentParameter);
                     return;
 
-                case "topThickness_textBox":
+                case TextViewType.TopThickness:
                     IsCorrect(MinTopThickness, value, MaxTopThickness);
                     minDependentParameter = 0;
                     maxDependentParameter = 0.15 * Double.Parse(height_textBox.Text);
                     IsCorrect(minDependentParameter, value, maxDependentParameter);
                     return;
 
-                case "topWidth_textBox":
+                case TextViewType.TopWidth:
                     IsCorrect(MinTopWidth, value, MaxTopWidth);
                     return;
 
-                case "wallThickness_textBox":
+                case TextViewType.WallThickness:
                     IsCorrect(MinWallThickness, value, MaxWallThickness);
                     minDependentParameter = 0;
                     maxDependentParameter = 0.2 * Double.Parse(bottomRadius_textBox.Text);

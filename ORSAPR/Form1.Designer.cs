@@ -32,12 +32,13 @@
             this.buildButton = new System.Windows.Forms.Button();
             this.material_comboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.bottomRadius_textBox = new System.Windows.Forms.TextBox();
-            this.topRadius_textBox = new System.Windows.Forms.TextBox();
-            this.height_textBox = new System.Windows.Forms.TextBox();
-            this.topThickness_textBox = new System.Windows.Forms.TextBox();
-            this.topWidth_textBox = new System.Windows.Forms.TextBox();
-            this.wallThickness_textBox = new System.Windows.Forms.TextBox();
+            this.bottomRadius_textBox = new TextView();
+            this.topRadius_textBox = new TextView();
+            this.height_textBox = new TextView();
+            this.topThickness_textBox = new TextView();
+            this.topWidth_textBox = new TextView();
+            this.wallThickness_textBox = new TextView();
+            this.bottomThickness_textBox = new TextView();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.bottomThickness_textBox = new System.Windows.Forms.TextBox();
             this.baseParams = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -103,6 +103,7 @@
             this.bottomRadius_textBox.TabIndex = 3;
             this.bottomRadius_textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.bottomRadius_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
+            this.bottomRadius_textBox.Type = TextViewType.BottomRadius;
             // 
             // topRadius_textBox
             // 
@@ -112,6 +113,7 @@
             this.topRadius_textBox.TabIndex = 4;
             this.topRadius_textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.topRadius_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
+            this.topRadius_textBox.Type = TextViewType.TopRadius;
             // 
             // height_textBox
             // 
@@ -121,6 +123,7 @@
             this.height_textBox.TabIndex = 5;
             this.height_textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.height_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
+            this.height_textBox.Type = TextViewType.Height;
             // 
             // topThickness_textBox
             // 
@@ -130,6 +133,7 @@
             this.topThickness_textBox.TabIndex = 6;
             this.topThickness_textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.topThickness_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
+            this.topThickness_textBox.Type = TextViewType.TopThickness;
             // 
             // topWidth_textBox
             // 
@@ -139,6 +143,7 @@
             this.topWidth_textBox.TabIndex = 7;
             this.topWidth_textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.topWidth_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
+            this.topWidth_textBox.Type = TextViewType.TopWidth;
             // 
             // wallThickness_textBox
             // 
@@ -148,6 +153,7 @@
             this.wallThickness_textBox.TabIndex = 8;
             this.wallThickness_textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.wallThickness_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
+            this.wallThickness_textBox.Type = TextViewType.WallThickness;
             // 
             // label2
             // 
@@ -220,6 +226,7 @@
             this.bottomThickness_textBox.TabIndex = 15;
             this.bottomThickness_textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             this.bottomThickness_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDoubleTextBoxs_KeyPress);
+            this.bottomThickness_textBox.Type = TextViewType.BottomThickness;
             // 
             // baseParams
             // 
@@ -372,12 +379,13 @@
         private System.Windows.Forms.Button buildButton;
         private System.Windows.Forms.ComboBox material_comboBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox bottomRadius_textBox;
-        private System.Windows.Forms.TextBox topRadius_textBox;
-        private System.Windows.Forms.TextBox height_textBox;
-        private System.Windows.Forms.TextBox topThickness_textBox;
-        private System.Windows.Forms.TextBox topWidth_textBox;
-        private System.Windows.Forms.TextBox wallThickness_textBox;
+        private TextView bottomRadius_textBox;
+        private TextView topRadius_textBox;
+        private TextView height_textBox;
+        private TextView topThickness_textBox;
+        private TextView topWidth_textBox;
+        private TextView wallThickness_textBox;
+        private TextView bottomThickness_textBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -385,7 +393,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox bottomThickness_textBox;
         private System.Windows.Forms.GroupBox baseParams;
         private System.Windows.Forms.GroupBox additionalParams;
         private System.Windows.Forms.Label label11;

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace Model
 {
     public class GlassParams
     {
-        #region Private params
+        #region Params
         /// <summary>
         /// Радиус дна стакана
         /// </summary>
@@ -61,6 +62,7 @@ namespace Model
         private const double PaperTopWidth = 3;
         #endregion
 
+        #region Constructor
         /// <summary>
         /// Конструктор для стакана из стекла
         /// </summary>
@@ -91,6 +93,12 @@ namespace Model
             TopWidth = PaperTopWidth/1000;
             WallThickness = PaperThicknes/1000;
         }
+        #endregion
 
+        #region Validation
+
+
+
+        #endregion
     }
 }
