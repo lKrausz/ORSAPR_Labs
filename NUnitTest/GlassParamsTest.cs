@@ -40,7 +40,6 @@ namespace NUnitTest
                 "Некорректное значение толщины стенок");
         }
 
-        [Test]
         [TestCase(0.015, 0.02, 0.045, TestName = "Тест конструктора для бумажного стакана ")]
         public void PaperConstructorTest(double bottomRadius, double height, double topRadius)
         {
@@ -57,8 +56,5 @@ namespace NUnitTest
                 "Некорректное значение высоты");
            
         }
-
-
-
     }
 }
