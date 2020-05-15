@@ -4,12 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Model;
 
 namespace GUI
 {
     class TextView: TextBox
     {
-        public TextViewType Type { get; set; }
+        /// <summary>
+        /// Тип textBox
+        /// </summary>
+        public TextViewPresenter.TextViewType Type { get; set; }
         
     }
 }

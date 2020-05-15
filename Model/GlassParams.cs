@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 
 namespace Model
-{
+{   /// <summary>
+    /// Класс, содержащий параметры стакана
+    /// </summary>
     public class GlassParams
     {
         #region Params
@@ -62,6 +64,29 @@ namespace Model
         private const double PaperTopWidth = 3;
         #endregion
 
+        #region Значение max и min значений параметров стакана
+        public const int MinBottomRadius = 15;
+        public const int MaxBottomRadius = 80;
+
+        public const int MinTopRadius = 15;
+        public const int MaxTopRadius = 120;
+
+        public const int MinHeight = 45;
+        public const int MaxHeight = 480;
+
+        public const int MinTopThickness = 0;
+        public const int MaxTopThickness = 72;
+
+        public const int MinTopWidth = 0;
+        public const int MaxTopWidth = 20;
+
+        public const int MinWallThickness = 3;
+        public const int MaxWallThickness = 16;
+
+        public const int MinBottomThickness = 3;
+        public const int MaxbottomThickness = 24;
+        #endregion
+
         #region Constructor
         /// <summary>
         /// Конструктор для стакана из стекла
@@ -69,6 +94,10 @@ namespace Model
         public GlassParams(double bottomRadius, double bottomThickness, double height, double topRadius, 
             double topThickness, double topWidth, double wallThickness)
         {
+            IsInRange(bottomRadius, topRadius, 1.5 * bottomRadius, "Радиус горлышка");
+            IsInRange(MinBottomThickness, bottomThickness, 0.2 * bottomRadius, "Толщина дна");
+            IsInRange(MinTopThickness, topThickness, 0.15 * height, "Толщина горлышка");
+            IsInRange(MinWallThickness, wallThickness, 0.2 * bottomRadius, "Толщина стенок");
             // Перевод введенных параметров в метры
             BottomRadius = bottomRadius/1000;
             BottomThickness = bottomThickness/1000;
@@ -83,6 +112,7 @@ namespace Model
         /// </summary>
         public GlassParams(double bottomRadius, double height, double topRadius)
         {
+            IsInRange(bottomRadius, topRadius, 1.5 * bottomRadius, "Радиус горлышка");
             // Перевод введенных параметров в метры,
             // присвоение значений, заданных константами
             BottomRadius = bottomRadius/1000;
@@ -94,11 +124,22 @@ namespace Model
             WallThickness = PaperThicknes/1000;
         }
         #endregion
-
-        #region Validation
-
-
-
-        #endregion
+        /// <summary>
+        /// Проверка на нахождение зависимых параметров стакана в допустимых границах
+        /// </summary>
+        /// <param name="minValue">Минимальная граница</param>
+        /// <param name="value">Текущее значение параметра</param>
+        /// <param name="maxValue">Максимаьная граница</param>
+        /// <param name="name">Имя текущего параметра</param>
+        private void IsInRange(double minValue, double value, double maxValue, string name)
+        {
+            string hint;
+            if (value < minValue || value > maxValue)
+            {
+                hint = "Нарушены параметры стакана. Область допустимых значений: " + name +
+                    " от " + minValue + " до " + maxValue + ".\n";
+                throw new ArgumentException(hint);
+            }
+        }
     }
 }

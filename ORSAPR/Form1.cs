@@ -15,12 +15,16 @@ namespace GUI
             InitializeComponent();
             material_comboBox.SelectedItem = "Стекло";
             ShowHelper();
+            buildButton.Enabled = false;
         }
-
         private SlwConnector _connector = new SlwConnector();
-
         private GlassBuilder _builder = new GlassBuilder();
 
+        /// <summary>
+        /// При нажатии на кнопку создается экземпляр GlassParams, а затем, если валидация пройдена, происходит построение стакана.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buildButton_Click(object sender, EventArgs e)
         {
             try
@@ -43,16 +47,17 @@ namespace GUI
                     double.Parse(height_textBox.Text),
                     double.Parse(topRadius_textBox.Text));
                 }
+
                 SldWorks swApp = _connector.StartProcess();
                 IModelDoc2 swModel = _connector.CreateDocument();
                 _builder.BuildGlass(swModel, glass);
             }
-            catch (FormatException)
+            catch (ArgumentException hint)
             {
-                MessageBox.Show("Требуется заполнение всех полей или проверка на наличие лишних запятых.",
-                   "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(hint.Message);
                 return;
             }
+
         }
         /// <summary>
         /// Скрытие/Демонстрация дополнительных параметров стакана при смене материала
@@ -69,29 +74,6 @@ namespace GUI
             }
         }
 
-        #region Значение max и min значений параметров стакана
-        private const int MinBottomRadius = 15;
-        private const int MaxBottomRadius = 80;
-
-        private const int MinTopRadius = 15;
-        private const int MaxTopRadius = 120;
-
-        private const int MinHeight = 45;
-        private const int MaxHeight = 480;
-
-        private const int MinTopThickness = 0;
-        private const int MaxTopThickness = 72;
-
-        private const int MinTopWidth = 0;
-        private const int MaxTopWidth = 20;
-
-        private const int MinWallThickness = 3;
-        private const int MaxWallThickness = 16;
-
-        private const int MinBottomThickness = 3;
-        private const int MaxbottomThickness = 24;
-        #endregion
-
         /// <summary>
         /// Валидатор на ввод double.
         /// </summary>
@@ -106,68 +88,27 @@ namespace GUI
         {
             string name = this.ActiveControl.Name;
             TextView type = (TextView)sender;
-            double value;
-            if (this.ActiveControl.Text != "")
-            {
-                value = Double.Parse(this.ActiveControl.Text);
-                Validation(type.Type, value);
-            }
-            else ShowError("Требуется заполнение поля.");
-        }
-
-        /// <summary>
-        /// Метод для проверки вводимых пользователем значений
-        /// </summary>
-        /// <param name="name"> Имя активного textBox </param>
-        /// <param name="value"> Введенное в textBox значение </param>
-        private void Validation(TextViewType type, double value)
-        {
             this.ActiveControl.BackColor = Color.White;
             buildButton.Enabled = true;
-            double minDependentParameter;
-            double maxDependentParameter;
-            switch (type)
+            double value;
+            try
             {
-                case TextViewType.BottomRadius:
-                    IsCorrect(MinBottomRadius,value, MaxBottomRadius);                  
-                    return;
-
-                case TextViewType.BottomThickness:
-                    IsCorrect(MinBottomThickness, value, MaxbottomThickness);
-                    minDependentParameter = 0;
-                    maxDependentParameter = 0.3 * Double.Parse(height_textBox.Text);
-                    IsCorrect(minDependentParameter, value, maxDependentParameter);
-                    return;
-
-                case TextViewType.Height:
-                    IsCorrect(MinHeight, value, MaxHeight);                 
-                    return;
-
-                case TextViewType.TopRadius:
-                    IsCorrect(MinTopRadius, value, MaxTopRadius);
-                    minDependentParameter = Double.Parse(bottomRadius_textBox.Text);
-                    maxDependentParameter = 1.5 * Double.Parse(bottomRadius_textBox.Text);
-                    IsCorrect(minDependentParameter, value, maxDependentParameter);
-                    return;
-
-                case TextViewType.TopThickness:
-                    IsCorrect(MinTopThickness, value, MaxTopThickness);
-                    minDependentParameter = 0;
-                    maxDependentParameter = 0.15 * Double.Parse(height_textBox.Text);
-                    IsCorrect(minDependentParameter, value, maxDependentParameter);
-                    return;
-
-                case TextViewType.TopWidth:
-                    IsCorrect(MinTopWidth, value, MaxTopWidth);
-                    return;
-
-                case TextViewType.WallThickness:
-                    IsCorrect(MinWallThickness, value, MaxWallThickness);
-                    minDependentParameter = 0;
-                    maxDependentParameter = 0.2 * Double.Parse(bottomRadius_textBox.Text);
-                    IsCorrect(minDependentParameter, value, maxDependentParameter);
-                    return;
-
+                if (this.ActiveControl.Text != "")
+                {
+                    value = Double.Parse(this.ActiveControl.Text);
+                    TextViewPresenter.Validation(type.Type, value);
+                }
+                else ShowError("Требуется заполнение поля.");
+            }
+            catch (FormatException)
+            {
+                ShowError("Требуется проверка на наличие лишних запятых.");
+                return;
+            }
+            catch (ArgumentException hint)
+            {
+                ShowError(hint.Message);
+                return;
             }
         }
         /// <summary>
@@ -180,6 +121,7 @@ namespace GUI
             toolTip.Show(hint, this.ActiveControl);
             buildButton.Enabled = false;
         }
+
         /// <summary>
         /// Вызов окна с подсказкой по оформлению
         /// </summary>
@@ -200,21 +142,6 @@ namespace GUI
                 "Данную справку вы можете вызвать в любое время при помощи кнопки '?' в нижнем правом углу.",
                    "Справка", MessageBoxButtons.OK, MessageBoxIcon.Question);
         }
-        /// <summary>
-        /// Проверка на нахождение введенного значения в допустимых границах
-        /// </summary>
-        /// <param name="minValue">Минимальное значение</param>
-        /// <param name="value">Введенное значение</param>
-        /// <param name="maxValue">Максимальное значение</param>
-        private void IsCorrect(double minValue, double value, double maxValue)
-        {
-            string hint;
-            if (value < minValue || value > maxValue)
-            {
-                hint = "Область допустимых значений: " +
-                    "от " + minValue + " до " + maxValue + ".\n";
-                ShowError(hint);
-            }
-        }
+       
     }
 }
