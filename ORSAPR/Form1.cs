@@ -23,8 +23,6 @@ namespace GUI
         /// <summary>
         /// При нажатии на кнопку создается экземпляр GlassParams, а затем, если валидация пройдена, происходит построение стакана.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void buildButton_Click(object sender, EventArgs e)
         {
             try
@@ -86,28 +84,27 @@ namespace GUI
         /// </summary>
         private void textBox_TextChanged(object sender, EventArgs e)
         {
-            string name = this.ActiveControl.Name;
-            TextView type = (TextView)sender;
-            this.ActiveControl.BackColor = Color.White;
+            TextView textView = (TextView)sender;
+            textView.BackColor = Color.White;
             buildButton.Enabled = true;
-            double value;
+            double textViewValue;
             try
             {
-                if (this.ActiveControl.Text != "")
+                if (textView.Text != "")
                 {
-                    value = Double.Parse(this.ActiveControl.Text);
-                    TextViewPresenter.Validation(type.Type, value);
+                    textViewValue = Double.Parse(textView.Text);
+                    TextViewPresenter.Validation(textView.Type, textViewValue);
                 }
-                else ShowError("Требуется заполнение поля.");
+                else ShowError("Требуется заполнение поля.", textView);
             }
             catch (FormatException)
             {
-                ShowError("Требуется проверка на наличие лишних запятых.");
+                ShowError("Требуется проверка на наличие лишних запятых.", textView);
                 return;
             }
             catch (ArgumentException hint)
             {
-                ShowError(hint.Message);
+                ShowError(hint.Message, textView);
                 return;
             }
         }
@@ -115,10 +112,10 @@ namespace GUI
         /// Отображение ошибки при неправельно введенном пользователем значении
         /// </summary>
         /// <param name="hint">Текст подсказки, сообщающей об ошибке в вводе данных</param>
-        private void ShowError(string hint)
+        private void ShowError(string hint, TextView textView)
         {
             this.ActiveControl.BackColor = Color.Plum;
-            toolTip.Show(hint, this.ActiveControl);
+            toolTip.Show(hint, textView);
             buildButton.Enabled = false;
         }
 
