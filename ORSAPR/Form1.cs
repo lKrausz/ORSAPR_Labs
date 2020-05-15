@@ -93,7 +93,7 @@ namespace GUI
                 if (textView.Text != "")
                 {
                     textViewValue = Double.Parse(textView.Text);
-                    TextViewPresenter.Validation(textView.Type, textViewValue);
+                    TextViewValidation.Validation(textView.Type, textViewValue);
                 }
                 else ShowError("Требуется заполнение поля.", textView);
             }

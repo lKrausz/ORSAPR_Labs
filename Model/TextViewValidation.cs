@@ -9,7 +9,7 @@ namespace Model
     /// <summary>
     /// Класс, отвечающий за логику работы TextView
     /// </summary>
-    static public class TextViewPresenter
+    static public class TextViewValidation
     {
         /// <summary>
         /// Набор типов TextView
@@ -80,5 +80,8 @@ namespace Model
                 throw new ArgumentException(hint);
             }
         }
+
+
+        
     }
 }
