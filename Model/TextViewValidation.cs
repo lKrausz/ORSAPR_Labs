@@ -11,19 +11,6 @@ namespace Model
     /// </summary>
     static public class TextViewValidation
     {
-        /// <summary>
-        /// Набор типов TextView
-        /// </summary>
-        public enum TextViewType
-        {
-            BottomRadius,
-            BottomThickness,
-            Height,
-            TopRadius,
-            TopThickness,
-            TopWidth,
-            WallThickness
-        }
 
         /// <summary>
         /// Метод для проверки вводимых пользователем значений

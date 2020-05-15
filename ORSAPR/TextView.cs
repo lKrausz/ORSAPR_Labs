@@ -13,6 +13,6 @@ namespace GUI
         /// <summary>
         /// Тип textBox
         /// </summary>
-        public TextViewValidation.TextViewType Type { get; set; }
+        public TextViewType Type { get; set; }
     }
 }
