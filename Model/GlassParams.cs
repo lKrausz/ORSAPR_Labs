@@ -84,7 +84,7 @@ namespace Model
         public const int MaxWallThickness = 16;
 
         public const int MinBottomThickness = 3;
-        public const int MaxbottomThickness = 144;
+        public const int MaxbottomThickness = 24;
         #endregion
 
         #region Constructor
@@ -95,7 +95,6 @@ namespace Model
             double topThickness, double topWidth, double wallThickness)
         {
             IsInRange(bottomRadius, topRadius, 1.5 * bottomRadius, "Радиус горлышка");
-            IsInRange(MinBottomThickness, bottomThickness, 0.3 * height, "Толщина дна");
             IsInRange(MinTopThickness, topThickness, 0.15 * height, "Толщина горлышка");
             IsInRange(MinWallThickness, wallThickness, 0.2 * bottomRadius, "Толщина стенок");
             // Перевод введенных параметров в метры
