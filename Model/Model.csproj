@@ -45,8 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TextViewType.cs" />
-    <Compile Include="TextViewValidation.cs" />
+    <Compile Include="Params.cs" />
+    <Compile Include="Validator.cs" />
     <Compile Include="GlassBuilder.cs" />
     <Compile Include="GlassParams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

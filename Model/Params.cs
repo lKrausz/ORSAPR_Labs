@@ -1,7 +1,7 @@
 ﻿
 namespace Model
 {
-    public enum TextViewType
+    public enum Params
     {
         BottomRadius,
         BottomThickness,

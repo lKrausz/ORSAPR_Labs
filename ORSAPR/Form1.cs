@@ -5,17 +5,33 @@ using SolidWorks.Interop.sldworks;
 using Model;
 using System.Text.RegularExpressions;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace GUI
 {
     public partial class glassBuilderForm : Form
     {
+        /// <summary>
+        /// Словарь хранящий текстбоксы и перечисление параметров.
+        /// </summary>
+        private Dictionary<NumericUpDown, Params> _params;
+
         public glassBuilderForm()
         {
             InitializeComponent();
             material_comboBox.SelectedItem = "Стекло";
             ShowHelper();
             buildButton.Enabled = false;
+            _params = new Dictionary<NumericUpDown, Params>
+            {
+                {bottomRadius_textBox, Params.BottomRadius },
+                {bottomThickness_textBox, Params.BottomThickness },
+                {height_textBox, Params.Height },
+                {topRadius_textBox, Params.TopRadius },
+                {topThickness_textBox, Params.TopThickness },
+                {topWidth_textBox, Params.TopWidth },
+                {wallThickness_textBox, Params.WallThickness },
+            };
         }
         private SlwConnector _connector = new SlwConnector();
         private GlassBuilder _builder = new GlassBuilder();
@@ -84,27 +100,27 @@ namespace GUI
         /// </summary>
         private void textBox_TextChanged(object sender, EventArgs e)
         {
-            TextView textView = (TextView)sender;
-            textView.BackColor = Color.White;
+            NumericUpDown textBox = (NumericUpDown)sender;
+            textBox.BackColor = Color.White;
             buildButton.Enabled = true;
             double textViewValue;
             try
             {
-                if (textView.Text != "")
+                if (textBox.Text != "")
                 {
-                    textViewValue = Double.Parse(textView.Text);
-                    TextViewValidation.Validation(textView.Type, textViewValue);
+                    textViewValue = Double.Parse(textBox.Text);
+                    Validator.Validation(_params[textBox], textViewValue);
                 }
-                else ShowError("Требуется заполнение поля.", textView);
+                else ShowError("Требуется заполнение поля.", textBox);
             }
             catch (FormatException)
             {
-                ShowError("Требуется проверка на наличие лишних запятых.", textView);
+                ShowError("Требуется проверка на наличие лишних запятых.", textBox);
                 return;
             }
             catch (ArgumentException hint)
             {
-                ShowError(hint.Message, textView);
+                ShowError(hint.Message, textBox);
                 return;
             }
         }
@@ -112,10 +128,10 @@ namespace GUI
         /// Отображение ошибки при неправельно введенном пользователем значении
         /// </summary>
         /// <param name="hint">Текст подсказки, сообщающей об ошибке в вводе данных</param>
-        private void ShowError(string hint, TextView textView)
+        private void ShowError(string hint, NumericUpDown textBox)
         {
             this.ActiveControl.BackColor = Color.Plum;
-            toolTip.Show(hint, textView);
+            toolTip.Show(hint, textBox);
             buildButton.Enabled = false;
         }
 

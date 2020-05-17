@@ -21,9 +21,10 @@ namespace SwConnector
         /// Открытие SOLIDWORKS
         /// </summary>
         public SldWorks StartProcess()
-        {     
-            Guid muGuid = new Guid("655fc8fc-6216-46e2-82b6-221a9a271624");
-            object processSw = System.Activator.CreateInstance(System.Type.GetTypeFromCLSID(muGuid));
+        {   //x64
+            //Guid muGuid = new Guid("655fc8fc-6216-46e2-82b6-221a9a271624");
+            //object processSw = System.Activator.CreateInstance(System.Type.GetTypeFromCLSID(muGuid));
+            object processSw = System.Activator.CreateInstance(System.Type.GetTypeFromProgID("SldWorks.Application"));
             _swApp = (SldWorks)processSw;
             _swApp.Visible = true;
             return _swApp;

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace Model
 {
     /// <summary>
-    /// Класс, отвечающий за логику работы TextView
+    /// Класс, отвечающий за валидацию TextBox
     /// </summary>
-    static public class TextViewValidation
+    static public class Validator
     {
 
         /// <summary>
@@ -17,35 +17,35 @@ namespace Model
         /// </summary>
         /// <param name="type"> Тип активного textBox </param>
         /// <param name="value"> Введенное в textBox значение </param>
-        static public void Validation(TextViewType type, double value)
+        static public void Validation(Params type, double value)
         {
             switch (type)
             {
-                case TextViewType.BottomRadius:
+                case Params.BottomRadius:
                     IsCorrect(GlassParams.MinBottomRadius, value, GlassParams.MaxBottomRadius);
                     return;
 
-                case TextViewType.BottomThickness:
+                case Params.BottomThickness:
                     IsCorrect(GlassParams.MinBottomThickness, value, GlassParams.MaxbottomThickness);
                     return;
 
-                case TextViewType.Height:
+                case Params.Height:
                     IsCorrect(GlassParams.MinHeight, value, GlassParams.MaxHeight);
                     return;
 
-                case TextViewType.TopRadius:
+                case Params.TopRadius:
                     IsCorrect(GlassParams.MinTopRadius, value, GlassParams.MaxTopRadius);
                     return;
 
-                case TextViewType.TopThickness:
+                case Params.TopThickness:
                     IsCorrect(GlassParams.MinTopThickness, value, GlassParams.MaxTopThickness);
                     return;
 
-                case TextViewType.TopWidth:
+                case Params.TopWidth:
                     IsCorrect(GlassParams.MinTopWidth, value, GlassParams.MaxTopWidth);
                     return;
 
-                case TextViewType.WallThickness:
+                case Params.WallThickness:
                     IsCorrect(GlassParams.MinWallThickness, value, GlassParams.MaxWallThickness);
                     return;
 

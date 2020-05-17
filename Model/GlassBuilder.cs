@@ -44,7 +44,8 @@ namespace Model
             
             //Вырез горлышка
             swModel.Extension.SelectByID2("Эскиз4", "SKETCH", 0, 0, 0, false, 0, null, 0);
-            myFeature = swModel.FeatureManager.FeatureCut4(true, false, false, 0, 0, glass.TopThickness, glass.TopWidth, false, false, false, false, 0, 0, false, false, false, false, false, true, true, true, true, false, 0, 0, false, false);
+            //myFeature = swModel.FeatureManager.FeatureCut4(true, false, false, 0, 0, glass.TopThickness, glass.TopWidth, false, false, false, false, 0, 0, false, false, false, false, false, true, true, true, true, false, 0, 0, false, false);
+            myFeature = swModel.FeatureManager.FeatureCut3(true, false, false, 0, 0, glass.TopThickness, glass.TopWidth, false, false, false, false, 0, 0, false, false, false, false, false, true, true, true, true, false, 0, 0, false);
 
         }
         /// <summary>
