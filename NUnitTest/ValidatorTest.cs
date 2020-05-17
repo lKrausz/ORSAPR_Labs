@@ -5,7 +5,7 @@ using Model;
 namespace NUnitTest
 {
     [TestFixture]
-    public class TextViewPresenterTest
+    public class ValidatorTest
     {
         [TestCase(Params.BottomRadius, 20, TestName = "Позитивный тест валидации радиуса дна стакана ")]
         [TestCase(Params.TopRadius, 50, TestName = "Позитивный тест валидации радиуса горлышка стакана ")]
@@ -16,7 +16,7 @@ namespace NUnitTest
         [TestCase(Params.WallThickness, 5, TestName = "Позитивный тест валидации толщины стенок стакана ")]
         public void ValidationTest(Params type, double value)
         {
-            Validator.Validation(type, value);
+            Model.Validator.Validation(type, value);
         }
 
 
@@ -31,7 +31,7 @@ namespace NUnitTest
         {
             Assert.Throws<ArgumentException>(
               () => {
-                  Validator.Validation(type, value);
+                  Model.Validator.Validation(type, value);
               },
                "Должно возникнуть исключение если значение поля "
                + attr + "выходит за диапозон доп-х значений");

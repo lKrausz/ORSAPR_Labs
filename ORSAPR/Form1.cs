@@ -71,7 +71,6 @@ namespace GUI
                 MessageBox.Show(hint.Message);
                 return;
             }
-
         }
         /// <summary>
         /// Скрытие/Демонстрация дополнительных параметров стакана при смене материала
@@ -103,13 +102,13 @@ namespace GUI
             TextBox textBox = (TextBox)sender;
             textBox.BackColor = Color.White;
             buildButton.Enabled = true;
-            double textViewValue;
+            double value;
             try
             {
                 if (textBox.Text != "")
                 {
-                    textViewValue = Double.Parse(textBox.Text);
-                    Validator.Validation(_params[textBox], textViewValue);
+                   value = Double.Parse(textBox.Text);
+                   Validator.Validation(_params[textBox], value);
                 }
                 else ShowError("Требуется заполнение поля.", textBox);
             }
