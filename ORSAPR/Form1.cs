@@ -14,7 +14,7 @@ namespace GUI
         /// <summary>
         /// Словарь хранящий текстбоксы и перечисление параметров.
         /// </summary>
-        private Dictionary<NumericUpDown, Params> _params;
+        private Dictionary<TextBox, Params> _params;
 
         public glassBuilderForm()
         {
@@ -22,7 +22,7 @@ namespace GUI
             material_comboBox.SelectedItem = "Стекло";
             ShowHelper();
             buildButton.Enabled = false;
-            _params = new Dictionary<NumericUpDown, Params>
+            _params = new Dictionary<TextBox, Params>
             {
                 {bottomRadius_textBox, Params.BottomRadius },
                 {bottomThickness_textBox, Params.BottomThickness },
@@ -100,7 +100,7 @@ namespace GUI
         /// </summary>
         private void textBox_TextChanged(object sender, EventArgs e)
         {
-            NumericUpDown textBox = (NumericUpDown)sender;
+            TextBox textBox = (TextBox)sender;
             textBox.BackColor = Color.White;
             buildButton.Enabled = true;
             double textViewValue;
@@ -128,7 +128,7 @@ namespace GUI
         /// Отображение ошибки при неправельно введенном пользователем значении
         /// </summary>
         /// <param name="hint">Текст подсказки, сообщающей об ошибке в вводе данных</param>
-        private void ShowError(string hint, NumericUpDown textBox)
+        private void ShowError(string hint, TextBox textBox)
         {
             this.ActiveControl.BackColor = Color.Plum;
             toolTip.Show(hint, textBox);
